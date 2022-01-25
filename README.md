@@ -37,6 +37,6 @@ Write server that can store and access user information
 Build client that allows users to connect and chat
 
 ### Task Management
-- [Trello] (https://trello.com/b/r4afoWFd/petfriendr)
+- [Trello](https://trello.com/b/r4afoWFd/petfriendr)
 - Gantt Chart
 
