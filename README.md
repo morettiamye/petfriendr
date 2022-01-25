@@ -30,11 +30,12 @@ The problem that this application solves is meeting new friends that have pets a
 - Users must be able to upload information and pet photos
 - Main UI will allow users to swipe to approve or decline pets to connect with owners or not. 
 - Users must be able to customize profile search settings
-- Location services will allow users to search for local areas to meet those they’ve connected with such as a cat cafe, dog park, pet-friendly coffee shop, etc.  
+- Location services will allow users to search for local areas to meet those they’ve connected with such as a cat cafe, dog park, pet-friendly coffee shop, etc.
+  
 **Objectives**
-Include Android layouts for each feature that requires an interface
-Write server that can store and access user information
-Build client that allows users to connect and chat
+- Include Android layouts for each feature that requires an interface
+- Write server that can store and access user information
+- Build client that allows users to connect and chat
 
 ### Task Management
 - [Trello](https://trello.com/b/r4afoWFd/petfriendr)
