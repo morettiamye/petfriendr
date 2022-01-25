@@ -2,10 +2,10 @@
 Group 3 project for SE 491 Winter 2022
 
 ### Group 3
-- Amy Moretti - amorett1@depaul.edu
-- Zoe Riederman - zrieder1@depaul.edu
-- Joe Salemi - jsalemi@depaul.edu
-- Jessica Solis - jsolis4@depaul.edu
+- [Amy Moretti](https://github.com/morettiamye)
+- [Zoe Riederman](https://github.com/zriederman)
+- [Joe Salemi](https://github.com/salemij93)
+- [Jessica Solis](https://github.com/soljess)
 
 
 ## Project Specifications
