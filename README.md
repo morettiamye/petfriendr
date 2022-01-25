@@ -39,5 +39,5 @@ The problem that this application solves is meeting new friends that have pets a
 
 ### Task Management
 - [Trello](https://trello.com/b/r4afoWFd/petfriendr)
-- Gantt Chart
+- [Gantt Chart](/projectProposal/ganttChart.pdf)
 
