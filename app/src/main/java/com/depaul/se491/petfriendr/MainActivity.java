@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
      super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
-    username = (EditText) findViewById(R.id.username);
+    username = (EditText) findViewById(R.id.fieldUsername);
     password = (EditText) findViewById(R.id.password);
     repassword = (EditText) findViewById(R.id.repassword);
     signup = (Button) findViewById(R.id.btnsignup);

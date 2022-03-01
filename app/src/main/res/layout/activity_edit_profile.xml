@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="112dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="#F73859"
+        android:text="Save"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/editProfileHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="423dp"
+        android:text="Edit Profile"
+        android:textColor="#F73859"
+        android:textSize="48sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/uploadImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/fieldPetName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="Pet's Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fieldPersonAge" />
+
+    <EditText
+        android:id="@+id/fieldPersonAge"
+        android:layout_width="80dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="Your Age"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="@+id/fieldPersonName"
+        tools:layout_editor_absoluteX="87dp" />
+
+    <EditText
+        android:id="@+id/fieldPetAge"
+        android:layout_width="80dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="Pet's Age"
+        android:inputType="number"
+        app:layout_constraintTop_toTopOf="@+id/fieldPetName"
+        tools:layout_editor_absoluteX="88dp" />
+
+    <EditText
+        android:id="@+id/fieldPersonName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.437"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editProfileHeader" />
+
+    <EditText
+        android:id="@+id/fieldProfileMessage"
+        android:layout_width="213dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Profile Message"
+        android:inputType="textMultiLine"
+        android:singleLine="false"
+        app:layout_constraintTop_toTopOf="@+id/fieldPetAge"
+        tools:layout_editor_absoluteX="85dp" />
+
+    <Button
+        android:id="@+id/btnUploadImage"
+        android:layout_width="87dp"
+        android:layout_height="40dp"
+        android:backgroundTint="#F73859"
+        android:text="Upload"
+        android:textSize="10sp"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="586dp" />
+
+    <ImageView
+        android:id="@+id/uploadedImage"
+        android:layout_width="wrap_content"
+        android:layout_height="112dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="NRE1"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="@+id/btnUploadImage"
+        app:layout_constraintStart_toStartOf="@+id/btnUploadImage"
+        app:layout_constraintTop_toBottomOf="@+id/item_barcode_nre_label"
+        tools:layout_width="120dp"
+        tools:src="@drawable/ic_launcher_background" />
+
+    <TextView
+        android:id="@+id/uploadImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Profile Picture"
+        tools:layout_editor_absoluteX="64dp"
+        tools:layout_editor_absoluteY="514dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
