@@ -2,48 +2,130 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/landingScreen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
     android:padding="10dp"
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/username"
-        android:layout_width="match_parent"
+        android:id="@+id/fieldUsername"
+        android:layout_width="254dp"
         android:layout_height="wrap_content"
-        android:hint="User Name"
-        android:layout_marginTop="50dp"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="200dp"
+        android:autofillHints=""
+        android:hint="@string/userName"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="213dp"
+        android:text="@string/alreadyRegistered"
+        android:textSize="12sp"
+        tools:text="Already registered?" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp"
+        android:text="@string/petfriender_2022" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="217dp"
+        android:layout_height="116dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="48dp"
+        android:contentDescription="@string/logo"
+        app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/password"
-        android:layout_width="match_parent"
+        android:id="@+id/fieldPassword"
+        android:layout_width="254dp"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/username"/>
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentEnd="false"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="81dp"
+        android:layout_marginTop="274dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="112dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="82dp"
+        android:layout_marginBottom="146dp"
+        android:backgroundTint="#F73859"
+        android:text="@string/login"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btnSignup"
+        android:layout_width="112dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="78dp"
+        android:layout_marginBottom="145dp"
+        android:backgroundTint="#F73859"
+        android:text="@string/signUp"
+        android:textColor="#FFFFFF"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
-        android:id="@+id/repassword"
-        android:layout_width="match_parent"
+        android:id="@+id/fieldConfirmPassword"
+        android:layout_width="254dp"
         android:layout_height="wrap_content"
-        android:hint="Retype Password"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/password"/>
+        android:layout_alignParentStart="false"
+        android:layout_alignParentBottom="false"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="79dp"
+        android:layout_marginBottom="339dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/confirmPass"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
 
-    <Button
-        android:id="@+id/btnsignup"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/fieldEmail"
+        android:layout_width="254dp"
         android:layout_height="wrap_content"
-        android:text="Register"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/repassword"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="276dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/emailAddress"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColorHint="#757575" />
 
-    <Button
-        android:id="@+id/btnsignin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Existing user! Go to Sign in page"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/btnsignup"/>
 
 </RelativeLayout>
