@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
         DB = new DBHelper(this);
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View view) {
 
                 String user = username.getText().toString();
