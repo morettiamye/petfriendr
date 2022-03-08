@@ -58,6 +58,7 @@ public class EditProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT_EDIT_PROFILE);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Find view by ID
         textYourName = findViewById(EDIT_TEXT_YOUR_NAME);

@@ -32,6 +32,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(LAYOUT_CREATE_ACCOUNT);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Find view by ID
         textEmail = findViewById(EDIT_TEXT_EMAIL);

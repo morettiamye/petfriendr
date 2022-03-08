@@ -29,6 +29,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
                 if (user.equals("") || pass.equals(""))
                     Toast.makeText(LoginActivity.this, "Please enter all the fields", Toast.LENGTH_SHORT).show();
