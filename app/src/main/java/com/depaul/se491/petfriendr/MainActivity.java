@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
      super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     username = (EditText) findViewById(R.id.username);
     password = (EditText) findViewById(R.id.password);
