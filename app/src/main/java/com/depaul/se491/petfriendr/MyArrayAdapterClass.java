@@ -1,4 +1,4 @@
-package com.example.petfrienderclone;
+package com.depaul.se491.petfriendr;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -1,5 +1,4 @@
-package com.example.petfrienderclone;
-
+package com.depaul.se491.petfriendr;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;

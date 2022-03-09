@@ -1,81 +1,121 @@
 package com.depaul.se491.petfriendr;
 
-import android.app.AlertDialog;
+import static com.depaul.se491.petfriendr.R.id.createaccount;
+import static com.depaul.se491.petfriendr.R.id.email;
+import static com.depaul.se491.petfriendr.R.id.password;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import com.depaul.se491.petfriendr.SwipingActivity;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class CreateAccountActivity extends AppCompatActivity {
 
-    // Resource ID
-    // TODO: Replace resource values
-    private final static int LAYOUT_CREATE_ACCOUNT = 0;
-    private final static int EDIT_TEXT_EMAIL = 0;
-    private final static int EDIT_TEXT_USERNAME = 0;
-    private final static int EDIT_TEXT_PASSWORD = 0;
-    private final static int BUTTON_SUBMIT = 0;
-    private final static int STRING_INFO_INVALID = 0;
-    private final static int STRING_OK = 0;
+    Button createAccountButton;
+    EditText etUserEmail, etUserPassword;
 
-    // Text View
-    private TextView textEmail;
-    private TextView textUsername;
-    private TextView textPassword;
+    FirebaseAuth mAuth;
+    FirebaseUser mUser;
+    FirebaseAuth.AuthStateListener firebaseAuthStateListener;
+    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    // Button View
-    private Button buttonSubmit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(LAYOUT_CREATE_ACCOUNT);
+        setContentView(R.layout.activity_registration);
 
-        // Find view by ID
-        textEmail = findViewById(EDIT_TEXT_EMAIL);
-        textUsername = findViewById(EDIT_TEXT_USERNAME);
-        textPassword = findViewById(EDIT_TEXT_PASSWORD);
-        buttonSubmit = findViewById(BUTTON_SUBMIT);
-        assert textEmail != null;
-        assert textUsername != null;
-        assert textPassword != null;
-        assert buttonSubmit != null;
+        etUserEmail = findViewById(R.id.email);
+        etUserPassword= findViewById(R.id.password);
+        createAccountButton = findViewById(createaccount);
 
-        // Add button click listener
-        buttonSubmit.setOnClickListener(view -> onButtonClickSubmit());
+        mAuth  = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+
+        createAccountButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getLoginInfo();
+            }
+        });
+
+
+
+//        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override //everything the status changes, something happens that triggers this function
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                //will have info on current logged in user
+//                //if use not logged in, will be null
+//                if (user !=null){
+//                    //user is logged in and can move onto the next activity
+//                    Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
+//                    startActivity(intent);
+//                    finish();
+//                    return;
+//                }
+//                //if use null, user can choose if he/she wants toregister or not .
+//
+//            }
+//        };
+
     }
 
-    // Called when submit button in clicked
-    private void onButtonClickSubmit() {
-        if (isInfoValid()) {
-            storeUserInfo();
-        }
-        else {
-            showDialogInfoInvalid();
+
+
+
+
+
+
+
+
+
+    private void getLoginInfo() {
+        //final String userName = etUserName.getText().toString();
+        String userEmail = etUserEmail.getText().toString();
+        String userPassword = etUserPassword.getText().toString();
+
+        if (!userEmail.matches(emailPattern)){
+            etUserEmail.setError("Enter correct email");
+
+        }else if (userPassword.isEmpty() || userPassword.length()<6){
+            etUserPassword.setError("Enter proper password");
+        }else{
+            //register the user
+            mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()){
+                        sendUserToSwiping();
+                        Toast.makeText(CreateAccountActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(CreateAccountActivity.this, "Registration fail", Toast.LENGTH_SHORT).show();
+
+
+                    }
+
+                }
+            });
         }
 
-        // Launch next activity
-        // TODO: Replace with correct activity to launch
-        Intent intent = new Intent(this, MainActivity.class);
+    }
+
+    private void sendUserToSwiping() {
+        Intent intent = new Intent(CreateAccountActivity.this, SwipingActivity.class);
         startActivity(intent);
+
     }
 
-    // Validates user information
-    private boolean isInfoValid() {
-        // TODO: Check if user information is valid
-        return false;
-    }
-
-    private void storeUserInfo() {
-        // TODO: Store user account information
-    }
-
-    private void showDialogInfoInvalid() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(STRING_INFO_INVALID);
-        builder.setPositiveButton(STRING_OK, (dialog, which) -> { });
-        builder.show();
-    }
 }
