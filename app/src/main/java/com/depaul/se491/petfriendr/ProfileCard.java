@@ -1,6 +1,6 @@
 package com.depaul.se491.petfriendr;
 
-public class Cards {
+public class ProfileCard {
     String thisUserID;
     String thisName;
 

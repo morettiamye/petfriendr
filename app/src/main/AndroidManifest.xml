@@ -33,7 +33,7 @@
 
 
         <activity
-            android:name=".MainActivity"
+            android:name=".SeePetsActivity"
             android:exported="true" />
 
         <activity
@@ -41,7 +41,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".LoginOrCreateAccountActivity"
+            android:name=".MainActivity"
             android:exported="true" >
 
             <intent-filter>
@@ -53,7 +53,7 @@
         </activity>
 
         <activity
-            android:name=".CreateAccountActivity"
+            android:name=".SignUpActivity"
             android:exported="false" />
 
         <activity

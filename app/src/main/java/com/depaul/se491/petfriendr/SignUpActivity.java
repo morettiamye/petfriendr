@@ -1,8 +1,6 @@
 package com.depaul.se491.petfriendr;
 
 import static com.depaul.se491.petfriendr.R.id.createaccount;
-import static com.depaul.se491.petfriendr.R.id.email;
-import static com.depaul.se491.petfriendr.R.id.password;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +12,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.depaul.se491.petfriendr.SwipingActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class CreateAccountActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     Button createAccountButton;
     EditText etUserEmail, etUserPassword;
@@ -36,7 +33,7 @@ public class CreateAccountActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_signup);
 
         etUserEmail = findViewById(R.id.email);
         etUserPassword= findViewById(R.id.password);
@@ -73,15 +70,6 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
     private void getLoginInfo() {
         //final String userName = etUserName.getText().toString();
         String userEmail = etUserEmail.getText().toString();
@@ -99,9 +87,9 @@ public class CreateAccountActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         sendUserToSwiping();
-                        Toast.makeText(CreateAccountActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
                     }else{
-                        Toast.makeText(CreateAccountActivity.this, "Registration fail", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Registration fail", Toast.LENGTH_SHORT).show();
 
 
                     }
@@ -112,10 +100,10 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     }
 
-    private void sendUserToSwiping() {
-        Intent intent = new Intent(CreateAccountActivity.this, SwipingActivity.class);
+/*    private void sendUserToSwiping() {
+        Intent intent = new Intent(SignUpActivity.this, SwipingActivity.class);
         startActivity(intent);
 
-    }
+    }*/
 
 }
