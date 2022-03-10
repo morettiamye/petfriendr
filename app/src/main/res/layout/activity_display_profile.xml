@@ -7,4 +7,36 @@
     android:layout_height="match_parent"
     tools:context=".DisplayProfileActivity">
 
-  </androidx.constraintlayout.widget.ConstraintLayout>
+  <TextView
+      android:id="@+id/textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Placeholder (Name)"
+      android:textColor="#F73659"
+      android:textSize="34sp"
+      android:textStyle="bold"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.495"
+      app:layout_constraintStart_toStartOf="parent"
+      tools:layout_editor_absoluteY="56dp" />
+
+  <ImageView
+      android:id="@+id/userProfilePic_imageView"
+      android:layout_width="291dp"
+      android:layout_height="195dp"
+      android:contentDescription="@string/imagepreview"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      tools:layout_editor_absoluteY="129dp" />
+
+  <TextView
+      android:id="@+id/profileText_text"
+      android:layout_width="295dp"
+      android:layout_height="151dp"
+      android:text="Placeholder for profile text"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.487"
+      app:layout_constraintStart_toStartOf="parent"
+      tools:layout_editor_absoluteY="357dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
