@@ -17,6 +17,15 @@
     <string name="default_info_title">Default Location</string>
     <string name="loginButton">Login</string>
     <string name="createAccountButton">createAccount</string>
+    <string name="editProfileText">Edit Profile</string>
+    <string name="update_email">Update Email</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="update_password">Update Password</string>
+    <string name="profile">Profile</string>
+    <string name="upload">Upload</string>
+    <string name="uploadbutton">uploadButton</string>
+    <string name="imagepreview">imagePreview</string>
+    <string name="updateName">Name</string>
 
 
     <!--
