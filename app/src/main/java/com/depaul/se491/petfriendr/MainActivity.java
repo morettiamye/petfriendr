@@ -1,3 +1,7 @@
+/*
+        Main screen for app: will contain Petfriendr logo, button that leads to signup or login
+ */
+
 package com.depaul.se491.petfriendr;
 
 import androidx.appcompat.app.AppCompatActivity;

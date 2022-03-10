@@ -1,3 +1,14 @@
+/*
+        This will allow the user to edit their profile.  This screen will contain:
+            - Field for pet name
+            - Field for Profile message
+            - Image Uploader
+            - Field to update email
+            - Field to update password
+
+            All of the above should be send to database as update to current information
+ */
+
 package com.depaul.se491.petfriendr;
 
 import androidx.activity.result.ActivityResult;

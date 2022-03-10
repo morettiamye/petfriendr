@@ -1,3 +1,9 @@
+/*
+    This screen will populate all of the profile entries in the database, display as cards.
+        -Screen should be scrollable
+        -Clicking on a card will take the user to the profile page
+ */
+
 package com.depaul.se491.petfriendr;
 
 import androidx.annotation.NonNull;

@@ -1,3 +1,13 @@
+/*
+        User signup page.  User will provide:
+        -username
+        -email address
+        -password
+
+        - check if username exists, if so error and reset.  if username is new, entries are added to the database.
+        user is then authenticated and taken to the Edit Profile screen.
+ */
+
 package com.depaul.se491.petfriendr;
 
 import static com.depaul.se491.petfriendr.R.id.createaccount;

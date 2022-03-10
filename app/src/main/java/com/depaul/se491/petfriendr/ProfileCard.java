@@ -1,3 +1,8 @@
+/*
+        Use this class to code the profile card that will display when populated on SeePetsActivity
+        Card should contain: photo (left) and username + pet name (right)
+*/
+
 package com.depaul.se491.petfriendr;
 
 public class ProfileCard {
