@@ -26,6 +26,9 @@
     <string name="uploadbutton">uploadButton</string>
     <string name="imagepreview">imagePreview</string>
     <string name="updateName">Name</string>
+    <string name="createEmail">Email</string>
+    <string name="createPassword">Password</string>
+    <string name="createUsername">Username</string>
 
 
     <!--
