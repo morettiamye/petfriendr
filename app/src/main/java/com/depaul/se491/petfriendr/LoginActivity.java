@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.petfrienderclone.SwipingActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        sendUserToSwiping();
+                        //sendUserToSwiping();
                         Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(LoginActivity.this, "Login fail", Toast.LENGTH_SHORT).show();
@@ -82,11 +81,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void sendUserToSwiping() {
+/*    private void sendUserToSwiping() {
         Intent intent = new Intent(LoginActivity.this, SwipingActivity.class);
         startActivity(intent);
 
-    }
+    }*/
 
 }
 
