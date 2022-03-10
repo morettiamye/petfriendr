@@ -15,11 +15,25 @@
     <string name="drawer_closed">Drawer Closed</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="default_info_title">Default Location</string>
+    <string name="loginButton">Login</string>
+    <string name="createAccountButton">createAccount</string>
+    <string name="editProfileText">Edit Profile</string>
+    <string name="update_email">Update Email</string>
+    <string name="update_profile">Update Profile</string>
+    <string name="update_password">Update Password</string>
+    <string name="profile">Profile</string>
+    <string name="upload">Upload</string>
+    <string name="uploadbutton">uploadButton</string>
+    <string name="imagepreview">imagePreview</string>
+    <string name="updateName">Name</string>
+    <string name="createEmail">Email</string>
+    <string name="createPassword">Password</string>
+    <string name="createUsername">Username</string>
 
 
-<!--
-    Unused strings from scrapped functionality
-    <string name="default_info_snippet">No places found, because location permission is disabled.</string>
-    <string name="option_get_place">Get place</string>
-    <string name="pick_place">Choose a place</string>-->
+    <!--
+        Unused strings from scrapped functionality
+        <string name="default_info_snippet">No places found, because location permission is disabled.</string>
+        <string name="option_get_place">Get place</string>
+        <string name="pick_place">Choose a place</string>-->
 </resources>
