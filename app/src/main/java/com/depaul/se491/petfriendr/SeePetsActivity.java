@@ -25,7 +25,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.auth.FirebaseUser;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
@@ -52,10 +51,7 @@ public class SeePetsActivity extends AppCompatActivity {
 
         usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
         firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser(); // logged in user clas
-        //String uid = user.getUid(); user uud
-        //String email = user.getEmail(); user email
-        //
+        currentUId = firebaseAuth.getCurrentUser().getUid();
 
 //        userList.add("Petfriendr user 1");
 //        userList.add("Petfriendr user 2");
