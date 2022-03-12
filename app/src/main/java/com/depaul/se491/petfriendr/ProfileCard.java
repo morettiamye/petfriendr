@@ -9,7 +9,7 @@ public class ProfileCard {
     String thisUserID;
     String thisName;
 
-    public Cards(String userID, String name){
+    public ProfileCard(String userID, String name){
         this.thisUserID = userID;
         this.thisName = name;
 
