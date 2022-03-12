@@ -96,7 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        sendUserToSwiping();
+                       // sendUserToSwiping();
                         Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(SignUpActivity.this, "Registration fail", Toast.LENGTH_SHORT).show();
