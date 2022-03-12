@@ -1,54 +1,44 @@
 package com.depaul.se491.petfriendr;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import androidx.annotation.Nullable;
 
-public class DBHelper extends SQLiteOpenHelper {
-    public static final String DBNAME = "Login.db";
-    public DBHelper(Context context) {
-        super(context, "Login.db", null, 1);
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import android.net.Uri;
+
+
+public class DBHelper extends AppCompatActivity {
+
+    //allows acces to user info and must be put into appropriate classes
+    private FirebaseAuth mAuth;
+    mAuth = FirebaseAuth.getInstance();
+//check to see if user is logged in already
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            //reload(); code to update logged in user
+        }
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase MyDB) {
-        MyDB.execSQL("create Table users(username TEXT primary key, password TEXT)");
-    }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
-        MyDB.execSQL("drop Table if exists users");
-    }
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    public Boolean insertData(String username, String password){
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        ContentValues contentValues= new ContentValues();
-        contentValues.put("username", username);
-        contentValues.put("password", password);
-        long result = MyDB.insert("users", null, contentValues);
-        if(result==-1) return false;
-        else
-            return true;
-    }
+    if(user !=null)    {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+            Uri photoUrl = user.getPhotoUrl();
 
-    public Boolean checkusername(String username) {
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from users where username = ?", new String[]{username});
-        if (cursor.getCount() > 0)
-            return true;
-        else
-            return false;
-    }
+            // Check if user's email is verified
+            boolean emailVerified = user.isEmailVerified();
 
-    public Boolean checkusernamepassword(String username, String password){
-        SQLiteDatabase MyDB = this.getWritableDatabase();
-        Cursor cursor = MyDB.rawQuery("Select * from users where username = ? and password = ?", new String[] {username,password});
-        if(cursor.getCount()>0)
-            return true;
-        else
-            return false;
-    }
+            // The user's ID, unique to the Firebase project. Do NOT use this value to
+            // authenticate with your backend server, if you have one. Use
+            // FirebaseUser.getIdToken() instead.
+            String uid = user.getUid();
+
+        }
+
 }

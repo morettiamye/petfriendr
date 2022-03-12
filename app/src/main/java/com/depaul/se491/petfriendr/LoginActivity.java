@@ -6,7 +6,9 @@
 
 package com.depaul.se491.petfriendr;
 
+
 import static com.depaul.se491.petfriendr.R.id.login;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etUserEmail = findViewById(R.id.email);
-        etUserPassword= findViewById(R.id.password);
+        etUserEmail = findViewById(R.id.usernameSignIn_textfield);
+        etUserPassword= findViewById(R.id.passwordSignUp_textField);
         loginButton = findViewById(login);
 
         mAuth  = FirebaseAuth.getInstance();
