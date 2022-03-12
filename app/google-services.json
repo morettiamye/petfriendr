@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "973308314740",
+    "project_id": "petfriender-c1043",
+    "storage_bucket": "petfriender-c1043.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973308314740:android:c6405188341b8d04483d21",
+        "android_client_info": {
+          "package_name": "com.example.petfrienderclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "973308314740-2bi9s6jobiub4ht7ql11ivuimvi7ghem.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.petfrienderclone",
+            "certificate_hash": "522a9d3e7eae03c6ce94bc8a4baa933086109ddd"
+          }
+        },
+        {
+          "client_id": "973308314740-ok8tbdsg6a0pok1u1ih8mhpolt29b5cg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzO59--o70oWXC1B2sJEtl4aTZqXXXb_Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "973308314740-ok8tbdsg6a0pok1u1ih8mhpolt29b5cg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

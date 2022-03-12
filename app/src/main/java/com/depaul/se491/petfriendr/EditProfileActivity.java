@@ -1,3 +1,14 @@
+/*
+        This will allow the user to edit their profile.  This screen will contain:
+            - Field for pet name
+            - Field for Profile message
+            - Image Uploader
+            - Field to update email
+            - Field to update password
+
+            All of the above should be send to database as update to current information
+ */
+
 package com.depaul.se491.petfriendr;
 
 import androidx.activity.result.ActivityResult;
@@ -57,7 +68,8 @@ public class EditProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(LAYOUT_EDIT_PROFILE);
+        setContentView(R.layout.activity_edit_profile);
+
 
         // Find view by ID
         textYourName = findViewById(EDIT_TEXT_YOUR_NAME);
