@@ -1,8 +1,8 @@
 package com.depaul.se491.petfriendr;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -20,7 +20,6 @@ public class DrawerFragment extends Fragment {
 
     private ListView listView;
     private DrawerLayout drawerLayout;
-    private ConstraintLayout constraint;
     private ActionBarDrawerToggle toggle;
     private ArrayAdapter<String> adapter;
     private ArrayList<String> options;
@@ -34,14 +33,11 @@ public class DrawerFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         listView = view.findViewById(R.id.DrawerList);
         drawerLayout = view.findViewById(R.id.DrawerLayout);
-        constraint = view.findViewById(R.id.LeftConstraint);
 
         options = new ArrayList<>();
-        options.add("Profile");
-        options.add("Swipe");
-        options.add("Messages");
-        options.add("Search");
-        options.add("Settings");
+        options.add("See Pets");
+        options.add("Edit Profile");
+        options.add("Log Out");
 
         adapter = new ArrayAdapter<>(getActivity(), R.layout.drawer_item, options);
         adapter.notifyDataSetChanged();
@@ -65,19 +61,15 @@ public class DrawerFragment extends Fragment {
 
     private void selectOption(int index) {
         String option = options.get(index);
-
         switch (option) {
-            case "Profile":
+            case "See Pets":
+                startActivity(new Intent(getActivity(), SeePetsActivity.class));
                 break;
-            case "Swipe":
+            case "Edit Profile":
+                startActivity(new Intent(getActivity(), EditProfileActivity.class));
                 break;
-            case "Messages":
-                break;
-            case "Search":
-                break;
-            case "Settings":
-                break;
-            default:
+            case "Log Out":
+                startActivity(new Intent(getActivity(), MainActivity.class));
                 break;
         }
     }

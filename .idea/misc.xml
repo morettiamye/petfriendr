@@ -3,6 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Zoe/Desktop/Mobile_App_Dev_Android_II/petfriendr/app/src/main/res/layout/activity_display_profile.xml" value="0.1796875" />
+        <entry key="..\:/Users/Zoe/Desktop/Mobile_App_Dev_Android_II/petfriendr/app/src/main/res/layout/activity_edit_profile.xml" value="0.1796875" />
+        <entry key="..\:/Users/Zoe/Desktop/Mobile_App_Dev_Android_II/petfriendr/app/src/main/res/layout/activity_login.xml" value="0.1796875" />
+        <entry key="..\:/Users/Zoe/Desktop/Mobile_App_Dev_Android_II/petfriendr/app/src/main/res/layout/activity_main.xml" value="0.1796875" />
+        <entry key="..\:/Users/Zoe/Desktop/Mobile_App_Dev_Android_II/petfriendr/app/src/main/res/layout/activity_see_pets.xml" value="0.1796875" />
+        <entry key="..\:/Users/Zoe/Desktop/Mobile_App_Dev_Android_II/petfriendr/app/src/main/res/layout/activity_signup.xml" value="0.1796875" />
+        <entry key="..\:/Users/Zoe/Desktop/Mobile_App_Dev_Android_II/petfriendr/app/src/main/res/layout/recycler_pets.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/activity_display_profile.xml" value="0.2" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_home_page.xml" value="0.3052536231884058" />
