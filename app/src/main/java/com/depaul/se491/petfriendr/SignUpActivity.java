@@ -45,8 +45,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        etUserEmail = findViewById(R.id.email);
-        etUserPassword= findViewById(R.id.password);
+        etUserEmail = findViewById(R.id.usernameSignIn_textfield);
+        etUserPassword= findViewById(R.id.passwordSignUp_textField);
         createAccountButton = findViewById(createaccount);
 
         mAuth  = FirebaseAuth.getInstance();
@@ -110,10 +110,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-/*    private void sendUserToSwiping() {
-        Intent intent = new Intent(SignUpActivity.this, SwipingActivity.class);
+    private void sendUserToSwiping() {
+        Intent intent = new Intent(SignUpActivity.this, SeePetsActivity.class);
         startActivity(intent);
 
-    }*/
+    }
 
 }

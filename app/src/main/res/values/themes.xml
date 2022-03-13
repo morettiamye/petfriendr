@@ -1,10 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-<<<<<<< HEAD
-    <style name="Theme.Petfriendr" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-=======
-    <style name="Theme.PetfrienderClone" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
->>>>>>> 83eaf7a... login, registration and swiping updated.
+    <style name="Theme.Petfriender" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

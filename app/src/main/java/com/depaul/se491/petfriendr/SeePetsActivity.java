@@ -17,7 +17,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.depaul.se491.petfriendr.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -33,14 +32,14 @@ import java.util.List;
 public class SeePetsActivity extends AppCompatActivity {
 
     //private final ArrayList<String> userList = new ArrayList<>();
-    private Cards cards_data;
+    private ProfileCard cards_data;
     private MyArrayAdapterClass myArrayAdapterClass;
     private int i;
     private FirebaseAuth firebaseAuth;//variable that stores everything about the logged in user.
 
     ListView listView;
 
-    List<Cards> rowItems;
+    List<ProfileCard> rowItems;
     private DatabaseReference usersDb;
     private String currentUId;
 
@@ -58,7 +57,7 @@ public class SeePetsActivity extends AppCompatActivity {
 //        userList.add("Petfriendr user 3");
 //        userList.add("Petfriendr user 4");
 //        userList.add("Petfriendr user 5");
-        rowItems = new ArrayList<Cards>();
+        rowItems = new ArrayList<ProfileCard>();
 
         myArrayAdapterClass = new MyArrayAdapterClass(this, R.layout.item, rowItems);
 
@@ -79,7 +78,7 @@ public class SeePetsActivity extends AppCompatActivity {
                 //Do something on the left!
                 //You also have access to the original object.
                 //If you want to use it just cast it (String) dataObject
-                Cards cards = (Cards) dataObject;
+                ProfileCard cards = (ProfileCard) dataObject;
                 String userID = cards.getThisUserID();
                 usersDb.child(userID).child("connections").child("Nos").child(currentUId).setValue(true);
                 Toast.makeText(SeePetsActivity.this, " ", Toast.LENGTH_SHORT).show();
@@ -87,7 +86,7 @@ public class SeePetsActivity extends AppCompatActivity {
 
             @Override
             public void onRightCardExit(Object dataObject) {
-                Cards cards = (Cards) dataObject;
+                ProfileCard cards = (ProfileCard) dataObject;
                 String userID = cards.getThisUserID();
                 usersDb.child(userID).child("connections").child("Yess").child(currentUId).setValue(true);
                 isConnectionMatch(userID);
@@ -142,7 +141,7 @@ public class SeePetsActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 DataSnapshot dataSnapshot = null;
                 if (dataSnapshot.exists() && !dataSnapshot.child("connections").child("Nos").hasChild(currentUId) && !dataSnapshot.child("connections").child("Yess").hasChild(currentUId)){
-                    Cards item = new Cards(dataSnapshot.getKey(), dataSnapshot.child("name").getValue().toString());
+                    ProfileCard item = new ProfileCard(dataSnapshot.getKey(), dataSnapshot.child("name").getValue().toString());
                     rowItems.add(item);
                     myArrayAdapterClass.notifyDataSetChanged();
                 }

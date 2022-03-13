@@ -9,17 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
-public class MyArrayAdapterClass extends ArrayAdapter<Cards> {
+public class MyArrayAdapterClass extends ArrayAdapter<ProfileCard> {
 
     Context context;
 
-    public MyArrayAdapterClass(Context context, int resourceID, List<Cards> items){ //will call when start populating the cards
+    public MyArrayAdapterClass(Context context, int resourceID, List<ProfileCard> items){ //will call when start populating the cards
         super(context, resourceID, items);
     }
     //will populate the card
     public View getView(int position, View convertView, ViewGroup parent){
         //get card specific to current view on the screen
-        Cards card_item = getItem(position);
+        ProfileCard card_item = getItem(position);
         if (convertView == null){
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item, parent, false);
         }
