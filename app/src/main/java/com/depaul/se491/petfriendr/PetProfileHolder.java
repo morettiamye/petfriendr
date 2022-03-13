@@ -7,6 +7,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 public class PetProfileHolder extends RecyclerView.ViewHolder {
 
     private ImageView imageProfile;
@@ -20,8 +22,8 @@ public class PetProfileHolder extends RecyclerView.ViewHolder {
         textPetName = itemView.findViewById(R.id.text_recycler_pet_name);
     }
 
-    public void setProfileImage() {
-        // TODO: Set profile image
+    public void setProfileImage(String imageUrl) {
+        Picasso.get().load(imageUrl).into(imageProfile);
     }
 
     public void setUserName(String text) {

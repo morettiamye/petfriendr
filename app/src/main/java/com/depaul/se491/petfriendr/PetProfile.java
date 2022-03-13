@@ -13,4 +13,5 @@ public class PetProfile {
 
     public String getUserName() { return userName; }
     public String getPetName() { return petName; }
+    public String getImageUrl() { return imageUrl; }
 }

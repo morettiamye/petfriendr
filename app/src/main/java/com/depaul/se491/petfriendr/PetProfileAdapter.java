@@ -33,8 +33,7 @@ public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileHolder> {
     @Override
     public void onBindViewHolder(@NonNull PetProfileHolder holder, int position) {
         PetProfile profile = profileList.get(position);
-        // TODO: Set Profile Image
-        holder.setProfileImage();
+        holder.setProfileImage(profile.getImageUrl());
         holder.setUserName(profile.getUserName());
         holder.setPetName(profile.getPetName());
     }

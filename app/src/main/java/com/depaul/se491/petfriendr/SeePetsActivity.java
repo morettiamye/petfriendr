@@ -34,7 +34,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView = findViewById(R.id.recycler_pets);
         recyclerView.setAdapter(profileAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        // TODO: Download pet profile data and add profiles to list
+        // TODO: Download pet profile data and add PetProfile objects to list
         profileAdapter.notifyDataSetChanged();
     }
 
@@ -44,7 +44,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         Intent intent = new Intent(this, DisplayProfileActivity.class);
         intent.putExtra("User Name", profile.getUserName());
         intent.putExtra("Pet Name", profile.getPetName());
-        // TODO: Send Profile Image with intent to next activity
+        intent.putExtra("Image URL", profile.getImageUrl());
         startActivity(intent);
     }
 }
