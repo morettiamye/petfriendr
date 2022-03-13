@@ -49,7 +49,7 @@ public class SeePetsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_see_pets);
 
-        usersDb = FirebaseDatabase.getInstance().getReference().child("Users");
+        usersDb = FirebaseDatabase.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
         currentUId = firebaseAuth.getCurrentUser().getUid();
 
@@ -58,6 +58,10 @@ public class SeePetsActivity extends AppCompatActivity {
 //        userList.add("Petfriendr user 3");
 //        userList.add("Petfriendr user 4");
 //        userList.add("Petfriendr user 5");
+        UserProfile user = new UserProfile("fido","joe",currentUId,"https://firebasestorage.googleapis.com/v0/b/petfriendr-c4cd3.appspot.com/o/images%2Fadorable-white-pomeranian-puppy-spitz-921029690-5c8be25d46e0fb000172effe.jpg?alt=media&token=0ec15f8a-e9cd-464e-bd0f-64c3b24185fb","hi this is fido");
+        usersDb.child("users").child(currentUId).setValue(user);
+        Comment comment = new Comment(firebaseAuth.getCurrentUser(),"test comment");
+        usersDb.child("comments").child(currentUId).setValue(comment);
         rowItems = new ArrayList<ProfileCard>();
 
         myArrayAdapterClass = new MyArrayAdapterClass(this, R.layout.item, rowItems);

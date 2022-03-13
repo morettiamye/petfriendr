@@ -45,8 +45,8 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        etUserEmail = findViewById(R.id.createEmail_textField);
-        etUserPassword= findViewById(R.id.createPassword_textField);
+        etUserEmail = findViewById(R.id.usernameSignIn_textfield);
+        etUserPassword= findViewById(R.id.passwordSignUp_textField);
         createAccountButton = findViewById(createaccount);
 
         mAuth  = FirebaseAuth.getInstance();
@@ -96,7 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                       // sendUserToSwiping();
+                        sendUserToSwiping();
                         Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(SignUpActivity.this, "Registration fail", Toast.LENGTH_SHORT).show();
@@ -110,10 +110,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-/*    private void sendUserToSwiping() {
-        Intent intent = new Intent(SignUpActivity.this, SwipingActivity.class);
+    private void sendUserToSwiping() {
+        Intent intent = new Intent(SignUpActivity.this, DisplayProfileActivity.class);
         startActivity(intent);
 
-    }*/
+    }
 
 }
