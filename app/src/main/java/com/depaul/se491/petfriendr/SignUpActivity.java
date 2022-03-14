@@ -10,8 +10,6 @@
 
 package com.depaul.se491.petfriendr;
 
-import static com.depaul.se491.petfriendr.R.id.createaccount;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,9 +28,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    Button createAccountButton;
-    EditText etUserEmail, etUserPassword;
-
+    Button createAccount;
+    EditText etUserEmail, etUserPassword, etUserName;
     FirebaseAuth mAuth;
     FirebaseUser mUser;
     FirebaseAuth.AuthStateListener firebaseAuthStateListener;
@@ -45,75 +42,51 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        etUserEmail = findViewById(R.id.usernameSignIn_textfield);
-        etUserPassword= findViewById(R.id.passwordSignUp_textField);
-        createAccountButton = findViewById(createaccount);
-
+        etUserEmail = findViewById(R.id.inputEmail);
+        etUserPassword = findViewById(R.id.inputPassword);
+        createAccount = findViewById(R.id.createAccountButton);
+        //etUserName = findViewById(R.id.createUsername_textField);
         mAuth  = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
-        createAccountButton.setOnClickListener(new View.OnClickListener() {
+        createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getLoginInfo();
+                performFirebaseAuthentication();
             }
         });
-
-
-
-//        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override //everything the status changes, something happens that triggers this function
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                //will have info on current logged in user
-//                //if use not logged in, will be null
-//                if (user !=null){
-//                    //user is logged in and can move onto the next activity
-//                    Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                    finish();
-//                    return;
-//                }
-//                //if use null, user can choose if he/she wants toregister or not .
-//
-//            }
-//        };
-
     }
 
-    private void getLoginInfo() {
-        //final String userName = etUserName.getText().toString();
-        String userEmail = etUserEmail.getText().toString();
-        String userPassword = etUserPassword.getText().toString();
-
-        if (!userEmail.matches(emailPattern)){
-            etUserEmail.setError("Enter correct email");
-
-        }else if (userPassword.isEmpty() || userPassword.length()<6){
-            etUserPassword.setError("Enter proper password");
+    private void performFirebaseAuthentication() {
+        String emailString = etUserEmail.getText().toString();
+        String passwordString = etUserPassword.getText().toString();
+       // String nameString = etUserName.getText().toString();
+        if (!emailString.matches(emailPattern)){
+            etUserEmail.setError("Enter Valid Email Address");
+        }else if(passwordString.isEmpty() || passwordString.length()<6){
+            etUserPassword.setError("Password cannot be empty or less than 6 characters in length");
         }else{
-            //register the user
-            mAuth.createUserWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.createUserWithEmailAndPassword(emailString, passwordString).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        sendUserToSwiping();
+                        //sendUserToNextActivity();
+                        //TODO: uncomment the above method once the method is complete.
                         Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
-                    }else{
+                    }else {
                         Toast.makeText(SignUpActivity.this, "Registration fail", Toast.LENGTH_SHORT).show();
-
-
                     }
-
                 }
             });
         }
-
     }
 
-    private void sendUserToSwiping() {
+    private void sendUserToNextActivity() {
+        //TODO: Update DisplayProfileActivity.class to the appropriate class after the user successfully  creates and account.
         Intent intent = new Intent(SignUpActivity.this, DisplayProfileActivity.class);
         startActivity(intent);
-
     }
 
 }
+
+
