@@ -29,11 +29,13 @@
         android:layout_height="wrap_content"
         android:hint="Email"
         android:id="@+id/inputEmail"/>
+
     <EditText
+        android:id="@+id/inputPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:id="@+id/inputPassword"/>
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/createAccountButton"
