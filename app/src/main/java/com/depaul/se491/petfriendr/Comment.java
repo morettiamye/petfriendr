@@ -3,7 +3,6 @@ package com.depaul.se491.petfriendr;
 import android.icu.text.SimpleDateFormat;
 import android.text.TextUtils;
 
-import com.google.firebase.firestore.ServerTimestamp;
 import com.google.firebase.auth.FirebaseUser;
 
 
