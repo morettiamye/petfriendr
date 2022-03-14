@@ -39,10 +39,6 @@
         </activity>
 
         <activity
-            android:name=".SeePetsActivity"
-            android:exported="true" />
-
-        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
 

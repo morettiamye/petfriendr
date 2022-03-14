@@ -84,58 +84,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-/*    private void sendUserToSwiping() {
-        Intent intent = new Intent(LoginActivity.this, SwipingActivity.class);
+    private void sendUserToSwiping() {
+        Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
         startActivity(intent);
 
-    }*/
+    }
 
 }
 
-    /*
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        //Listener part - checks change in the login status so that if logged in can move onto main activity
-        firebaseAuth  = FirebaseAuth.getInstance();
-        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override //everything the status changes, something happens that triggers this function
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                //will have info on current logged in user
-                //if use not logged in, will be null
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user !=null){
-                    //user is logged in and can move onto the next activity
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return;
-                }
-                //if use null, user can choose if he/she wants toregister or not .
-            }
-        };
-
-
-
-
-
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(firebaseAuthStateListener);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        firebaseAuth.removeAuthStateListener(firebaseAuthStateListener);
-
-    }*/
 

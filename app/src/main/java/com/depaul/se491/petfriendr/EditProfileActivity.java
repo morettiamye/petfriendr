@@ -31,7 +31,6 @@ import java.io.InputStream;
 
 public class EditProfileActivity extends AppCompatActivity {
 
-    // TODO: Replace resource values
     // Resource ID
     private final static int LAYOUT_EDIT_PROFILE = 0;
     private final static int EDIT_TEXT_YOUR_NAME = 0;
@@ -155,6 +154,5 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void storeUserInfo() {
-        // TODO: Store user profile information
     }
 }
