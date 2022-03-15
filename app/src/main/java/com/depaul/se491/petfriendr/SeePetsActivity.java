@@ -10,10 +10,20 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -21,8 +31,12 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
 
     private RecyclerView recyclerView;
     private PetProfileAdapter profileAdapter;
+    private DatabaseReference mDatabase;
+    private DatabaseReference mUsersRef;
+    private ValueEventListener mUsersListener;
 
-    private ArrayList<PetProfile> profileList;
+
+    private ArrayList<UserProfile> profileList;
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
@@ -35,16 +49,53 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.setAdapter(profileAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         // TODO: Download pet profile data and add PetProfile objects to list
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        getUsers();
         profileAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onClick(View view) {
-        PetProfile profile = profileList.get((recyclerView.getChildAdapterPosition(view)));
+        UserProfile profile = profileList.get((recyclerView.getChildAdapterPosition(view)));
         Intent intent = new Intent(this, DisplayProfileActivity.class);
         intent.putExtra("User Name", profile.getUserName());
         intent.putExtra("Pet Name", profile.getPetName());
-        intent.putExtra("Image URL", profile.getImageUrl());
+        intent.putExtra("Image URL", profile.getPhoto());
         startActivity(intent);
     }
+
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        cleanBasicListener();
+
+    }
+    public void getUsers() {
+        mUsersRef = mDatabase.child("users");
+        mUsersRef.setValue("initialize");
+        mUsersListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Toast.makeText( SeePetsActivity.this,"data retrieved",Toast.LENGTH_LONG);
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    UserProfile user = child.getValue(UserProfile.class);
+                    profileList.add(user);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText( SeePetsActivity.this,"data failed",Toast.LENGTH_LONG);
+            }
+        };
+        mUsersRef.addValueEventListener(mUsersListener);
+
+    }
+    public void cleanBasicListener() {
+
+        mUsersRef.removeEventListener(mUsersListener);
+    }
+
 }

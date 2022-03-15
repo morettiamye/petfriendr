@@ -14,9 +14,9 @@ public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileHolder> {
 
     private SeePetsActivity activity;
 
-    private ArrayList<PetProfile> profileList;
+    private ArrayList<UserProfile> profileList;
 
-    public PetProfileAdapter(SeePetsActivity activity, ArrayList<PetProfile> profileList) {
+    public PetProfileAdapter(SeePetsActivity activity, ArrayList<UserProfile> profileList) {
         this.activity = activity;
         this.profileList = profileList;
     }
@@ -32,8 +32,8 @@ public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull PetProfileHolder holder, int position) {
-        PetProfile profile = profileList.get(position);
-        holder.setProfileImage(profile.getImageUrl());
+        UserProfile profile = profileList.get(position);
+        holder.setProfileImage(profile.getPhoto());
         holder.setUserName(profile.getUserName());
         holder.setPetName(profile.getPetName());
     }

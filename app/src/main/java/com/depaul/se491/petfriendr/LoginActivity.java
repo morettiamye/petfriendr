@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        //sendUserToNextActivity();
+                        sendUserToNextActivity();
                         //TODO: uncomment the above method once the method is complete.
 
                         Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void sendUserToNextActivity() {
         //TODO: Update DisplayProfileActivity.class to the appropriate class after the user successfully  creates and account.
-        Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
+        Intent intent = new Intent(LoginActivity.this, SeePetsActivity.class);
         startActivity(intent);
 
     }

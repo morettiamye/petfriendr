@@ -38,6 +38,10 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SeePetsActivity"
+            android:exported="false"/>
+
+
         <activity
             android:name=".SignUpActivity"
             android:exported="false" />
