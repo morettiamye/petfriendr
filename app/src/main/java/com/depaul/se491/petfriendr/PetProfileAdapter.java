@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.reflect.Array;
+import com.depaul.se491.petfriendr.models.UserProfile;
+
 import java.util.ArrayList;
 
 public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileHolder> {

@@ -1,4 +1,4 @@
-package com.depaul.se491.petfriendr;
+package com.depaul.se491.petfriendr.models;
 
 import android.icu.text.SimpleDateFormat;
 import android.text.TextUtils;

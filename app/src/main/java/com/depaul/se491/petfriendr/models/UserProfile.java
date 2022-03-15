@@ -1,4 +1,4 @@
-package com.depaul.se491.petfriendr;
+package com.depaul.se491.petfriendr.models;
 
 public class UserProfile {
 
