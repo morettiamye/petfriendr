@@ -74,7 +74,6 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
     }
     public void getUsers() {
         mUsersRef = mDatabase.child("users");
-        mUsersRef.setValue("initialize");
         mUsersListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

@@ -71,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
                         sendUserToNextActivity();
-                        //TODO: uncomment the above method once the method is complete.
 
                         Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                     }else{
