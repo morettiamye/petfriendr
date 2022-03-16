@@ -38,14 +38,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="Email Address" />
+        android:hint="Email Address"
+        android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/inputPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/createAccountButton"
