@@ -22,7 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
 
     Button loginButton;
     EditText etUserEmail, etUserPassword;
@@ -34,8 +34,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        super.onCreate(savedInstanceState);
+
 
         etUserEmail = findViewById(R.id.loginEmail);
         etUserPassword= findViewById(R.id.loginPassword);
