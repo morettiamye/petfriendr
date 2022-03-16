@@ -18,12 +18,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-public class DisplayProfileActivity extends AppCompatActivity {
+public class DisplayProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_profile);
+        super.onCreate(savedInstanceState);
         String userName = getIntent().getStringExtra("User Name");
         String petName = getIntent().getStringExtra("Pet Name");
         String imageUrl = getIntent().getStringExtra("Image URL");

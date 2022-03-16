@@ -34,7 +34,6 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
     private DatabaseReference mUsersRef;
     private ValueEventListener mUsersListener;
 
-
     private ArrayList<UserProfile> profileList;
 
     @SuppressLint("NotifyDataSetChanged")
@@ -47,10 +46,8 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView = findViewById(R.id.recycler_pets);
         recyclerView.setAdapter(profileAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        // TODO: Download pet profile data and add PetProfile objects to list
         mDatabase = FirebaseDatabase.getInstance().getReference();
         getUsers();
-        profileAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -80,6 +77,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     UserProfile user = child.getValue(UserProfile.class);
                     profileList.add(user);
+                    profileAdapter.notifyDataSetChanged();
                 }
             }
 

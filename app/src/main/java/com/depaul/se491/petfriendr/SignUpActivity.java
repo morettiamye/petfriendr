@@ -26,7 +26,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseActivity {
 
     Button createAccount;
     EditText etUserEmail, etUserPassword, etUserName;
@@ -39,8 +39,8 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        super.onCreate(savedInstanceState);
 
         etUserEmail = findViewById(R.id.inputEmail);
         etUserPassword = findViewById(R.id.inputPassword);
