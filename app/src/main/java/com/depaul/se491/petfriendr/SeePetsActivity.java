@@ -50,7 +50,6 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         // TODO: Download pet profile data and add PetProfile objects to list
         mDatabase = FirebaseDatabase.getInstance().getReference();
         getUsers();
-        profileAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -80,6 +79,8 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     UserProfile user = child.getValue(UserProfile.class);
                     profileList.add(user);
+                    profileAdapter.notifyDataSetChanged();
+
                 }
             }
 
