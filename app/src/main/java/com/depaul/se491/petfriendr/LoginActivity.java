@@ -37,8 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        etUserEmail = findViewById(R.id.email);
-        etUserPassword= findViewById(R.id.password);
+        etUserEmail = findViewById(R.id.loginEmail);
+        etUserPassword= findViewById(R.id.loginPassword);
         loginButton = findViewById(login);
 
         mAuth  = FirebaseAuth.getInstance();
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getLoginInfo();
+                loginUserEmailAndPassword();
             }
         });
 
@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void getLoginInfo() {
+    private void loginUserEmailAndPassword() {
         String userEmail = etUserEmail.getText().toString();
         String userPassword = etUserPassword.getText().toString();
 
@@ -70,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        //sendUserToSwiping();
+                        sendUserToNextActivity();
+
                         Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(LoginActivity.this, "Login fail", Toast.LENGTH_SHORT).show();
@@ -84,58 +85,13 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-/*    private void sendUserToSwiping() {
-        Intent intent = new Intent(LoginActivity.this, SwipingActivity.class);
+    private void sendUserToNextActivity() {
+        //TODO: Update DisplayProfileActivity.class to the appropriate class after the user successfully  creates and account.
+        Intent intent = new Intent(LoginActivity.this, SeePetsActivity.class);
         startActivity(intent);
 
-    }*/
+    }
 
 }
 
-    /*
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-
-        //Listener part - checks change in the login status so that if logged in can move onto main activity
-        firebaseAuth  = FirebaseAuth.getInstance();
-        firebaseAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override //everything the status changes, something happens that triggers this function
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                //will have info on current logged in user
-                //if use not logged in, will be null
-                final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if (user !=null){
-                    //user is logged in and can move onto the next activity
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                    return;
-                }
-                //if use null, user can choose if he/she wants toregister or not .
-            }
-        };
-
-
-
-
-
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        firebaseAuth.addAuthStateListener(firebaseAuthStateListener);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        firebaseAuth.removeAuthStateListener(firebaseAuthStateListener);
-
-    }*/
 
