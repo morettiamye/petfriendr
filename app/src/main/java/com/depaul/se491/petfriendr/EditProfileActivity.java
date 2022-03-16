@@ -78,13 +78,13 @@ public class EditProfileActivity extends AppCompatActivity {
         textMessage = findViewById(EDIT_TEXT_MESSAGE);
         imageProfile = findViewById(IMAGE_VIEW_PROFILE);
         buttonSubmit = findViewById(BUTTON_SUBMIT);
-        assert textYourName != null;
-        assert textPetName != null;
-        assert textPetAge != null;
-        assert textLocation != null;
-        assert textMessage != null;
-        assert imageProfile != null;
-        assert buttonSubmit != null;
+//        assert textYourName != null;
+//        assert textPetName != null;
+//        assert textPetAge != null;
+//        assert textLocation != null;
+//        assert textMessage != null;
+//        assert imageProfile != null;
+//        assert buttonSubmit != null;
 
         // Register image capture activity callback
         cameraLauncher = registerForActivityResult(
@@ -95,10 +95,10 @@ public class EditProfileActivity extends AppCompatActivity {
                 this::handleGalleryResult);
 
         // Add image click listener
-        imageProfile.setOnClickListener(view -> showDialogGetProfileImage());
+       // imageProfile.setOnClickListener(view -> showDialogGetProfileImage());
 
         // Add button click listener
-        buttonSubmit.setOnClickListener(view -> showDialogSaveChanges());
+        //buttonSubmit.setOnClickListener(view -> showDialogSaveChanges());
     }
 
     private void showDialogGetProfileImage() {
