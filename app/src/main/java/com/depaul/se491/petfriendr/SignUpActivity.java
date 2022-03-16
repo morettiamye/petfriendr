@@ -82,7 +82,7 @@ public class SignUpActivity extends BaseActivity {
 
     private void sendUserToNextActivity() {
         //TODO: Update DisplayProfileActivity.class to the appropriate class after the user successfully  creates and account.
-        Intent intent = new Intent(SignUpActivity.this, DisplayProfileActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, EditProfileActivity.class);
         startActivity(intent);
     }
 
