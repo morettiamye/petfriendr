@@ -57,6 +57,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         intent.putExtra("User Name", profile.getUserName());
         intent.putExtra("Pet Name", profile.getPetName());
         intent.putExtra("Image URL", profile.getPhoto());
+        intent.putExtra("Message", profile.getProfileMessage());
         startActivity(intent);
     }
 

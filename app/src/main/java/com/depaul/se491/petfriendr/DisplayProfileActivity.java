@@ -27,11 +27,14 @@ public class DisplayProfileActivity extends BaseActivity {
         String userName = getIntent().getStringExtra("User Name");
         String petName = getIntent().getStringExtra("Pet Name");
         String imageUrl = getIntent().getStringExtra("Image URL");
+        String message = getIntent().getStringExtra("Message");
         TextView textUser = findViewById(R.id.display_text_user_name);
         TextView textPet = findViewById(R.id.display_text_pet_name);
+        TextView textMessage = findViewById((R.id.display_text_message));
         ImageView imagePic = findViewById(R.id.display_image_profile_pic);
         textUser.setText(userName);
         textPet.setText(petName);
+        textMessage.setText(message);
         Picasso.get().load(imageUrl).into(imagePic);
     }
 }
