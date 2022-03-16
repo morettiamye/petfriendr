@@ -70,8 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        //sendUserToNextActivity();
-                        //TODO: uncomment the above method once the method is complete.
+                        sendUserToNextActivity();
                         Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(SignUpActivity.this, "Registration fail", Toast.LENGTH_SHORT).show();
