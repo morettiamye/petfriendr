@@ -16,7 +16,7 @@
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="@+id/display_text_pet_name"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintHorizontal_bias="0.504"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
       android:textStyle="bold"
       app:layout_constraintBottom_toTopOf="@+id/display_image_profile_pic"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.5"
+      app:layout_constraintHorizontal_bias="0.495"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/display_text_user_name" />
 

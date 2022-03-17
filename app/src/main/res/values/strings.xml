@@ -34,4 +34,7 @@
     <string name="pick_place">Choose a place</string>
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="profileimage">profileimage</string>
 </resources>

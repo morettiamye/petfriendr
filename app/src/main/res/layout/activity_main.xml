@@ -30,14 +30,16 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:text="@string/loginButton" />
+        android:text="@string/loginButton"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/createaccount"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_gravity="center"
-        android:text="@string/create_account" />
+        android:text="@string/create_account"
+        tools:ignore="TextContrastCheck" />
 
 
 </LinearLayout>

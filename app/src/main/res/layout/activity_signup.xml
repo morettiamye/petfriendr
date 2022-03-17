@@ -42,7 +42,8 @@
         android:autofillHints=""
         android:hint="@string/email_address"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/inputPassword"
