@@ -20,11 +20,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.depaul.se491.petfriendr.models.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends BaseActivity {
 
@@ -35,6 +38,7 @@ public class SignUpActivity extends BaseActivity {
     FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private DatabaseReference mDatabase;
 
 
     @Override
@@ -45,9 +49,10 @@ public class SignUpActivity extends BaseActivity {
         etUserEmail = findViewById(R.id.inputEmail);
         etUserPassword = findViewById(R.id.inputPassword);
         createAccount = findViewById(R.id.createAccountButton);
-        //etUserName = findViewById(R.id.createUsername_textField);
+        etUserName = findViewById(R.id.username);
         mAuth  = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +65,7 @@ public class SignUpActivity extends BaseActivity {
     private void performFirebaseAuthentication() {
         String emailString = etUserEmail.getText().toString();
         String passwordString = etUserPassword.getText().toString();
-       // String nameString = etUserName.getText().toString();
+        String nameString = etUserName.getText().toString();
         if (!emailString.matches(emailPattern)){
             etUserEmail.setError("Enter Valid Email Address");
         }else if(passwordString.isEmpty() || passwordString.length()<6){
@@ -70,6 +75,15 @@ public class SignUpActivity extends BaseActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String uid = user.getUid();
+                        UserProfile newUser = new UserProfile("Pet Name",
+                                nameString,
+                                uid,
+                                "photo url",
+                                "hi I'm ",
+                                "");
+                        mDatabase.child("users").child(uid).setValue(newUser);
                         sendUserToNextActivity();
                         Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
                     }else {
@@ -85,6 +99,7 @@ public class SignUpActivity extends BaseActivity {
         Intent intent = new Intent(SignUpActivity.this, EditProfileActivity.class);
         startActivity(intent);
     }
+
 
 }
 
