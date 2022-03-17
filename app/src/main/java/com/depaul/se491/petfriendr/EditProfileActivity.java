@@ -23,69 +23,21 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import java.io.InputStream;
 
-public class EditProfileActivity extends AppCompatActivity  implements View.OnClickListener {
-
-//    // Resource ID
-//    private final static int LAYOUT_EDIT_PROFILE = 0;
-//    private final static int EDIT_TEXT_YOUR_NAME = 0;
-//    private final static int EDIT_TEXT_PET_NAME = 0;
-//    private final static int EDIT_TEXT_PET_AGE = 0;
-//    private final static int EDIT_TEXT_LOCATION = 0;
-//    private final static int EDIT_TEXT_MESSAGE = 0;
-//    private final static int IMAGE_VIEW_PROFILE = 0;
-//    private final static int BUTTON_SUBMIT = 0;
-//    private final static int STRING_IMAGE_PROFILE = 0;
-//    private final static int STRING_GALLERY = 0;
-//    private final static int STRING_CAMERA = 0;
-//    private final static int STRING_SAVE_CHANGES = 0;
-//    private final static int STRING_CANCEL = 0;
-//    private final static int STRING_OK = 0;
-
-    // Text View
-    TextView textYourName;
-    TextView textPetName;
-    TextView textPetAge;
-    TextView textLocation;
-    TextView textMessage;
-
-    //ImageView imageProfile = findViewById(IMAGE_VIEW_PROFILE);
-
-    // Activity Result Launcher
+public class EditProfileActivity extends AppCompatActivity {
     private ActivityResultLauncher<Intent> cameraLauncher;
     private ActivityResultLauncher<Intent> galleryLauncher;
+
+    private ImageView imageProfile;
+    private Button updateProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
-
-        // Find view by ID
-        //textYourName = findViewById(EDIT_TEXT_YOUR_NAME);
-        textYourName = view.
-        textPetName = findViewById(EDIT_TEXT_PET_NAME);
-        textPetAge = findViewById(EDIT_TEXT_PET_AGE);
-        textLocation = findViewById(EDIT_TEXT_LOCATION);
-        textMessage = findViewById(EDIT_TEXT_MESSAGE);
-
-        // Image View
-        ImageView imageProfile = findViewById(IMAGE_VIEW_PROFILE);
-        // Button
-        Button updateProfile = findViewById(BUTTON_SUBMIT);
-//        assert textYourName != null;
-//        assert textPetName != null;
-//        assert textPetAge != null;
-//        assert textLocation != null;
-//        assert textMessage != null;
-//        assert imageProfile != null;
-//        assert buttonSubmit != null;
 
         // Register image capture activity callback
         cameraLauncher = registerForActivityResult(
@@ -95,33 +47,31 @@ public class EditProfileActivity extends AppCompatActivity  implements View.OnCl
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleGalleryResult);
 
-        // Add image click listener
-        imageProfile.setOnClickListener(this);
-
-        // Add button click listener
-        updateProfile.setOnClickListener(this);
+        imageProfile = (ImageView) findViewById(R.id.imageProfile);
+        updateProfile = (Button) findViewById(R.id.updateProfile);
+        imageProfile.setOnClickListener(v -> showDialogGetProfileImage());
+        updateProfile.setOnClickListener(v -> showDialogSaveChanges());
     }
 
 
-
-
+    private void showDialogGetProfileImage() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.imagepreview);
+        builder.setNeutralButton(R.string.cancel, (dialog, which) ->  { });
+        builder.setNegativeButton(R.string.gallery, (dialog, which) -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            galleryLauncher.launch(intent);
+        });
+        builder.setPositiveButton(R.string.camera, (dialog, which) -> {
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            cameraLauncher.launch(intent);
+        });
+        builder.show();
+    }
 
     private void handleCameraResult(ActivityResult result) {
-        if (result.getResultCode() == RESULT_OK) {private void showDialogGetProfileImage() {
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(STRING_IMAGE_PROFILE);
-            builder.setNeutralButton(STRING_CANCEL, (dialog, which) ->  { });
-            builder.setNegativeButton(STRING_GALLERY, (dialog, which) -> {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                galleryLauncher.launch(intent);
-            });
-            builder.setPositiveButton(STRING_CAMERA, (dialog, which) -> {
-                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                cameraLauncher.launch(intent);
-            });
-            builder.show();
-        }
+        if (result.getResultCode() == RESULT_OK) {
             try {
                 Intent data = result.getData();
                 assert data != null;
@@ -150,24 +100,12 @@ public class EditProfileActivity extends AppCompatActivity  implements View.OnCl
 
     private void showDialogSaveChanges() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(STRING_SAVE_CHANGES);
-        builder.setNegativeButton(STRING_CANCEL, (dialog, which) ->  { });
-        builder.setPositiveButton(STRING_OK, (dialog, which) -> storeUserInfo());
+        builder.setTitle(R.string.saveChanges);
+        builder.setNegativeButton(R.string.cancel, (dialog, which) ->  { });
+        builder.setPositiveButton(R.string.ok, (dialog, which) -> storeUserInfo());
         builder.show();
     }
 
     private void storeUserInfo() {
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch(view.getId()){
-            case R.id.imageProfile:
-                showDialogGetProfileImage();
-                break;
-            case R.id.updateProfile:
-                showDialogSaveChanges();
-                break;
-        }
     }
 }
