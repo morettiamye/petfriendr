@@ -77,6 +77,7 @@ public class SignUpActivity extends BaseActivity {
                     if (task.isSuccessful()){
                         FirebaseUser user = mAuth.getCurrentUser();
                         String uid = user.getUid();
+
                         UserProfile newUser = new UserProfile("Pet Name",
                                 nameString,
                                 uid,
