@@ -52,23 +52,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:hint="Username"
+        android:autofillHints=""
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/loginPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/login"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="15dp"
-        android:text="@string/loginButton" />
+        android:text="@string/loginButton"
+        tools:ignore="TextContrastCheck" />
 
 
 

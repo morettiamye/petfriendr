@@ -26,9 +26,10 @@
             android:layout_height="300dp">
 
             <ImageView
+                android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/image"/>
+                android:contentDescription="@string/profileimage" />
 
             <TextView
                 android:id="@+id/name"
