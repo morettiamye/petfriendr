@@ -36,7 +36,8 @@ public class BaseActivity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.DrawerLayout);
 
         options = new ArrayList<>();
-        options.add("See Pets");
+        options.add("Edit Profile");
+        options.add("Feed");
         options.add("Log Out");
 
         adapter = new ArrayAdapter<>(this, R.layout.drawer_item, options);
@@ -76,7 +77,9 @@ public class BaseActivity extends AppCompatActivity {
     private void onSelectOption(int index) {
         String option = options.get(index);
         switch (option) {
-            case "See Pets":
+            case "Edit Profile":
+                startActivity(new Intent(this, EditProfileActivity.class));
+            case "Feed":
                 startActivity(new Intent(this, SeePetsActivity.class));
                 break;
             case "Log Out":
