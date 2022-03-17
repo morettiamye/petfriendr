@@ -14,10 +14,11 @@ public class Comment {
     private String userName;
     private String comment;
     private String timestamp;
+    private  String receivedUserName;
 
     public Comment(){}
 
-    public Comment(FirebaseUser user, String comment) {
+    public Comment(FirebaseUser user, String comment, String receivedUserName) {
         this.userId = user.getUid();
         this.userName = user.getDisplayName();
         if (TextUtils.isEmpty(this.userName)) {
@@ -28,6 +29,7 @@ public class Comment {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String millisInString  = dateFormat.format(new Date());
         this.timestamp = millisInString;
+        this.receivedUserName = receivedUserName;
     }
 
     public String getUserId() {
@@ -44,5 +46,9 @@ public class Comment {
 
     public String getTimestamp() {
         return timestamp;
+    }
+
+    public String getReceivedUserName() {
+        return receivedUserName;
     }
 }

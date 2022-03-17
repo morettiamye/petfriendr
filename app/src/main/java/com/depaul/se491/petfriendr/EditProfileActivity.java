@@ -1,14 +1,3 @@
-/*
-        This will allow the user to edit their profile.  This screen will contain:
-            - Field for pet name
-            - Field for Profile message
-            - Image Uploader
-            - Field to update email
-            - Field to update password
-
-            All of the above should be send to database as update to current information
- */
-
 package com.depaul.se491.petfriendr;
 
 import androidx.activity.result.ActivityResult;
@@ -25,66 +14,19 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
-
 import java.io.InputStream;
 
 public class EditProfileActivity extends AppCompatActivity {
-
-    // Resource ID
-    private final static int LAYOUT_EDIT_PROFILE = 0;
-    private final static int EDIT_TEXT_YOUR_NAME = 0;
-    private final static int EDIT_TEXT_PET_NAME = 0;
-    private final static int EDIT_TEXT_PET_AGE = 0;
-    private final static int EDIT_TEXT_LOCATION = 0;
-    private final static int EDIT_TEXT_MESSAGE = 0;
-    private final static int IMAGE_VIEW_PROFILE = 0;
-    private final static int BUTTON_SUBMIT = 0;
-    private final static int STRING_IMAGE_PROFILE = 0;
-    private final static int STRING_GALLERY = 0;
-    private final static int STRING_CAMERA = 0;
-    private final static int STRING_SAVE_CHANGES = 0;
-    private final static int STRING_CANCEL = 0;
-    private final static int STRING_OK = 0;
-
-    // Text View
-    private TextView textYourName;
-    private TextView textPetName;
-    private TextView textPetAge;
-    private TextView textLocation;
-    private TextView textMessage;
-
-    // Image View
-    private ImageView imageProfile;
-
-    // Button
-    private Button buttonSubmit;
-
-    // Activity Result Launcher
     private ActivityResultLauncher<Intent> cameraLauncher;
     private ActivityResultLauncher<Intent> galleryLauncher;
+
+    private ImageView imageProfile;
+    private Button updateProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
-
-        // Find view by ID
-        textYourName = findViewById(EDIT_TEXT_YOUR_NAME);
-        textPetName = findViewById(EDIT_TEXT_PET_NAME);
-        textPetAge = findViewById(EDIT_TEXT_PET_AGE);
-        textLocation = findViewById(EDIT_TEXT_LOCATION);
-        textMessage = findViewById(EDIT_TEXT_MESSAGE);
-        imageProfile = findViewById(IMAGE_VIEW_PROFILE);
-        buttonSubmit = findViewById(BUTTON_SUBMIT);
-        assert textYourName != null;
-        assert textPetName != null;
-        assert textPetAge != null;
-        assert textLocation != null;
-        assert textMessage != null;
-        assert imageProfile != null;
-        assert buttonSubmit != null;
 
         // Register image capture activity callback
         cameraLauncher = registerForActivityResult(
@@ -94,23 +36,23 @@ public class EditProfileActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleGalleryResult);
 
-        // Add image click listener
-        imageProfile.setOnClickListener(view -> showDialogGetProfileImage());
-
-        // Add button click listener
-        buttonSubmit.setOnClickListener(view -> showDialogSaveChanges());
+        imageProfile = (ImageView) findViewById(R.id.imageProfile);
+        updateProfile = (Button) findViewById(R.id.updateProfile);
+        imageProfile.setOnClickListener(v -> showDialogGetProfileImage());
+        updateProfile.setOnClickListener(v -> showDialogSaveChanges());
     }
+
 
     private void showDialogGetProfileImage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(STRING_IMAGE_PROFILE);
-        builder.setNeutralButton(STRING_CANCEL, (dialog, which) ->  { });
-        builder.setNegativeButton(STRING_GALLERY, (dialog, which) -> {
+        builder.setTitle(R.string.imagepreview);
+        builder.setNeutralButton(R.string.cancel, (dialog, which) ->  { });
+        builder.setNegativeButton(R.string.gallery, (dialog, which) -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");
             galleryLauncher.launch(intent);
         });
-        builder.setPositiveButton(STRING_CAMERA, (dialog, which) -> {
+        builder.setPositiveButton(R.string.camera, (dialog, which) -> {
             Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
             cameraLauncher.launch(intent);
         });
@@ -147,9 +89,9 @@ public class EditProfileActivity extends AppCompatActivity {
 
     private void showDialogSaveChanges() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(STRING_SAVE_CHANGES);
-        builder.setNegativeButton(STRING_CANCEL, (dialog, which) ->  { });
-        builder.setPositiveButton(STRING_OK, (dialog, which) -> storeUserInfo());
+        builder.setTitle(R.string.saveChanges);
+        builder.setNegativeButton(R.string.cancel, (dialog, which) ->  { });
+        builder.setPositiveButton(R.string.ok, (dialog, which) -> storeUserInfo());
         builder.show();
     }
 
