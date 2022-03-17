@@ -86,7 +86,7 @@ public class DisplayProfileActivity extends BaseActivity {
             public void onSuccess(Void aVoid) {
                 // Write was successful!
                 // ...
-                allComments.append(newComment +"\n");
+               //ih allComments.append(newComment +"\n");
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
