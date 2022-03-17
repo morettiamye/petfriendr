@@ -42,11 +42,4 @@
     <string name="saveChanges">Save Changes</string>
     <string name="ok">OK</string>
     <string name="placeholder_name">Placeholder (Name)</string>
-    <string name="petnameplaceholder">petnameplaceholder</string>
-    <string name="usernameplaceholder">usernameplaceholder</string>
-    <string name="profileplaceholder">profileplaceholder</string>
-    <string name="commentsplaceholder">commentsplaceholder</string>
-    <string name="leave_a_comment">Leave a comment</string>
-    <string name="submit">Submit</string>
-    <string name="back">Back</string>
 </resources>
