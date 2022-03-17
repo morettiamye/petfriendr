@@ -71,7 +71,7 @@ public class DisplayProfileActivity extends BaseActivity {
         mAuth  = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
         Comment newCommentData = new Comment(mUser,newComment,userName);
-        mDatabase.child("comments").child(mUser.getUid()).setValue(newCommentData).addOnSuccessListener(new OnSuccessListener<Void>() {
+        mDatabase.child("comments").child(newCommentData.getId()).setValue(newCommentData).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 // Write was successful!
