@@ -40,5 +40,6 @@
     <string name="gallery">Gallery</string>
     <string name="profileimage">Profile Image</string>
     <string name="saveChanges">Save Changes</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
+    <string name="placeholder_name">Placeholder (Name)</string>
 </resources>
