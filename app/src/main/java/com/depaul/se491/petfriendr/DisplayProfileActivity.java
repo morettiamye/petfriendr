@@ -61,11 +61,11 @@ public class DisplayProfileActivity extends AppCompatActivity {
         textPet.setText(petName);
         textMessage.setText(message);
         Picasso.get().load(imageUrl).into(imagePic);
-        newCommentText = findViewById(R.id.editTextTextPersonName);
+        newCommentText = findViewById(R.id.leavecommenttv);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        allComments = findViewById(R.id.commentPlaceholder);
+        allComments = findViewById(R.id.textView);
 
-        submitComment = findViewById(R.id.submitComment);
+        submitComment = findViewById(R.id.submitcontentbtn);
         submitComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
