@@ -136,7 +136,7 @@ public class EditProfileActivity extends AppCompatActivity {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
-        UploadTask uploadTask = profilepicRef.putBytes(data);
+        UploadTask uploadTask = profilepicImageRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
@@ -147,7 +147,7 @@ public class EditProfileActivity extends AppCompatActivity {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                String photo = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
                  mDatabase.child("users").child(user.getUid()).child("photo").setValue(photo);
-        
+
             }
         });
 
