@@ -9,7 +9,6 @@ package com.depaul.se491.petfriendr;
 import static com.depaul.se491.petfriendr.R.id.login;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,7 +28,6 @@ public class LoginActivity extends BaseActivity {
 
     FirebaseAuth mAuth;
     FirebaseUser mUser;
-    //FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
     @Override
@@ -56,7 +54,7 @@ public class LoginActivity extends BaseActivity {
 
     }
 
-    private void loginUserEmailAndPassword() {
+    public void loginUserEmailAndPassword() {
         String userEmail = etUserEmail.getText().toString();
         String userPassword = etUserPassword.getText().toString();
 
@@ -85,6 +83,9 @@ public class LoginActivity extends BaseActivity {
         }
 
     }
+
+
+
 
     private void sendUserToNextActivity() {
         //TODO: Update DisplayProfileActivity.class to the appropriate class after the user successfully  creates and account.
