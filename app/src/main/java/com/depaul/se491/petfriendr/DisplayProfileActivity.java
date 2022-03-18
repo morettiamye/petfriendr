@@ -32,7 +32,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class DisplayProfileActivity extends BaseActivity {
+public class DisplayProfileActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
     private DatabaseReference mCommentsRef;
@@ -46,8 +46,8 @@ public class DisplayProfileActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_display_profile);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_display_profile);
         String userName = getIntent().getStringExtra("User Name");
         String petName = getIntent().getStringExtra("Pet Name");
         String imageUrl = getIntent().getStringExtra("Image URL");

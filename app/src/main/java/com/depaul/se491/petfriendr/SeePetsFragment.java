@@ -3,17 +3,19 @@
         -Screen should be scrollable
         -Clicking on a card will take the user to the profile page
  */
-
 package com.depaul.se491.petfriendr;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SeePetsActivity extends AppCompatActivity implements View.OnClickListener {
+public class SeePetsFragment extends Fragment implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private PetProfileAdapter profileAdapter;
@@ -38,22 +40,32 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_see_pets);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_see_pets, container, false);
+
         profileList = new ArrayList<>();
         profileAdapter = new PetProfileAdapter(this, profileList);
-        recyclerView = findViewById(R.id.recycler_pets);
+
+        recyclerView = view.findViewById(R.id.recycler_pets);
         recyclerView.setAdapter(profileAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
         getUsers();
     }
 
     @Override
     public void onClick(View view) {
         UserProfile profile = profileList.get((recyclerView.getChildAdapterPosition(view)));
-        Intent intent = new Intent(this, DisplayProfileActivity.class);
+        Intent intent = new Intent(getActivity(), DisplayProfileActivity.class);
         intent.putExtra("User Name", profile.getUserName());
         intent.putExtra("Pet Name", profile.getPetName());
         intent.putExtra("Image URL", profile.getPhoto());
@@ -75,7 +87,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         mUsersListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Toast.makeText( SeePetsActivity.this,"data retrieved",Toast.LENGTH_LONG);
+                Toast.makeText( getActivity(),"data retrieved",Toast.LENGTH_LONG);
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     UserProfile user = child.getValue(UserProfile.class);
                     profileList.add(user);
@@ -85,7 +97,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText( SeePetsActivity.this,"data failed",Toast.LENGTH_LONG);
+                Toast.makeText( getActivity(),"data failed",Toast.LENGTH_LONG);
             }
         };
         mUsersRef.addValueEventListener(mUsersListener);

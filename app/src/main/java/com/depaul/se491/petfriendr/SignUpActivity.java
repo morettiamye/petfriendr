@@ -29,7 +29,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUpActivity extends BaseActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     Button createAccount;
     EditText etUserEmail, etUserPassword, etUserName;
@@ -43,8 +43,8 @@ public class SignUpActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_signup);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_signup);
 
         etUserEmail = findViewById(R.id.inputEmail);
         etUserPassword = findViewById(R.id.inputPassword);
@@ -97,7 +97,7 @@ public class SignUpActivity extends BaseActivity {
 
     private void sendUserToNextActivity() {
         //TODO: Update DisplayProfileActivity.class to the appropriate class after the user successfully  creates and account.
-        Intent intent = new Intent(SignUpActivity.this, EditProfileActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, EditProfileFragment.class);
         startActivity(intent);
     }
 
