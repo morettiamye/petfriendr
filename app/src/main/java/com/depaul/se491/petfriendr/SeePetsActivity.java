@@ -48,6 +48,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDatabase = FirebaseDatabase.getInstance().getReference();
         getUsers();
+        profileAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -78,7 +79,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     UserProfile user = child.getValue(UserProfile.class);
                     profileList.add(user);
-                    profileAdapter.notifyDataSetChanged();
+
                 }
             }
 
