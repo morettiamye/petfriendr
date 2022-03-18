@@ -14,17 +14,15 @@ import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 
     private Button loginButton;
     private Button createAccountButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_main);
-
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
 
         loginButton = (Button) findViewById(R.id.login);
         createAccountButton = (Button) findViewById(R.id.createaccount);
