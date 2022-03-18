@@ -9,6 +9,8 @@ package com.depaul.se491.petfriendr;
 import static com.depaul.se491.petfriendr.R.id.login;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends AppCompatActivity {
 
     Button loginButton;
     EditText etUserEmail, etUserPassword;
@@ -32,9 +34,8 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_login);
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_login);
 
         etUserEmail = findViewById(R.id.loginEmail);
         etUserPassword= findViewById(R.id.loginPassword);
