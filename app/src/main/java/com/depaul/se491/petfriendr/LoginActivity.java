@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void sendUserToNextActivity() {
         //TODO: Update DisplayProfileActivity.class to the appropriate class after the user successfully  creates and account.
-        Intent intent = new Intent(LoginActivity.this, SeePetsActivity.class);
+        Intent intent = new Intent(LoginActivity.this, MainNavigationActivity.class);
         startActivity(intent);
 
     }

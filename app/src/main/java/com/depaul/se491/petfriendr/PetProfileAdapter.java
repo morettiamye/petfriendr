@@ -13,12 +13,11 @@ import java.util.ArrayList;
 
 public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileHolder> {
 
-    private SeePetsActivity activity;
+    private final SeePetsFragment fragment;
+    private final ArrayList<UserProfile> profileList;
 
-    private ArrayList<UserProfile> profileList;
-
-    public PetProfileAdapter(SeePetsActivity activity, ArrayList<UserProfile> profileList) {
-        this.activity = activity;
+    public PetProfileAdapter(SeePetsFragment fragment, ArrayList<UserProfile> profileList) {
+        this.fragment = fragment;
         this.profileList = profileList;
     }
 
@@ -27,7 +26,7 @@ public class PetProfileAdapter extends RecyclerView.Adapter<PetProfileHolder> {
     public PetProfileHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_pets, parent, false);
-        view.setOnClickListener(activity);
+        view.setOnClickListener(fragment);
         return new PetProfileHolder(view);
     }
 
