@@ -1,55 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".DisplayProfileActivity"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DisplayProfileActivity">
 
         <TextView
             android:id="@+id/display_text_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="36dp"
             android:text="@string/placeholder_name"
             android:textColor="#F73659"
             android:textSize="34sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/display_text_message"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/display_text_pet_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="68dp"
+            android:layout_marginBottom="20dp"
             android:text="@string/placeholder_name"
             android:textColor="#F73659"
             android:textSize="34sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/display_text_user_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/display_text_message"
             android:layout_width="325dp"
             android:layout_height="122dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="373dp"
+            android:layout_marginEnd="43dp"
             android:text="@string/placeholder_name"
             android:textAlignment="textStart"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.616"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="373dp" />
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/display_image_profile_pic"
@@ -57,26 +47,17 @@
             android:layout_height="291dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/imagepreview"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toTopOf="@+id/display_text_pet_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            android:scaleType="fitXY" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="324dp"
             android:layout_height="93dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-            android:text="@string/commentsplaceholder"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/display_text_message"
-            app:layout_constraintVertical_bias="0.0" />
+            android:layout_marginEnd="31dp"
+            android:text="@string/commentsplaceholder" />
 
         <Button
             android:id="@+id/submitcontentbtn"
@@ -84,13 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            android:text="@string/submitbtn"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/leavecommenttv"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:ignore="TextContrastCheck" />
+            android:text="@string/submitbtn" />
 
         <EditText
             android:id="@+id/leavecommenttv"
@@ -102,10 +77,6 @@
             android:ems="10"
             android:hint="@string/leave_a_comment"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
-            tools:ignore="TextContrastCheck" />
+            android:minHeight="48dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
