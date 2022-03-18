@@ -3,7 +3,6 @@
         -Screen should be scrollable
         -Clicking on a card will take the user to the profile page
  */
-
 package com.depaul.se491.petfriendr;
 
 import android.annotation.SuppressLint;
@@ -48,7 +47,6 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         mDatabase = FirebaseDatabase.getInstance().getReference();
         getUsers();
-        profileAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -59,6 +57,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
         intent.putExtra("Pet Name", profile.getPetName());
         intent.putExtra("Image URL", profile.getPhoto());
         intent.putExtra("Message", profile.getProfileMessage());
+        intent.putExtra("userId",profile.getUserId());
         startActivity(intent);
     }
 
@@ -79,7 +78,7 @@ public class SeePetsActivity extends AppCompatActivity implements View.OnClickLi
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     UserProfile user = child.getValue(UserProfile.class);
                     profileList.add(user);
-
+                    profileAdapter.notifyDataSetChanged();
                 }
             }
 
