@@ -124,6 +124,8 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void storeUserInfo() {
+
+
     }
 
     private void uploadNewPhoto(){
@@ -145,8 +147,6 @@ public class EditProfileActivity extends AppCompatActivity {
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-               String photo = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                 mDatabase.child("users").child(user.getUid()).child("photo").setValue(photo);
 
             }
         });
