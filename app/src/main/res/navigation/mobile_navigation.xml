@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_see_pets">
+    <fragment
+        android:id="@+id/navigation_see_pets"
+        android:name="com.depaul.se491.petfriendr.SeePetsFragment"
+        android:label="@string/default_info_snippet"
+        tools:layout="@layout/fragment_see_pets" />
+    <fragment
+        android:id="@+id/navigation_edit_profile"
+        android:name="com.depaul.se491.petfriendr.EditProfileFragment"
+        android:label="EditProfileFragment" />
+</navigation>

@@ -3,8 +3,9 @@ package com.depaul.se491.petfriendr;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,11 +13,16 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import java.io.InputStream;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileFragment extends Fragment {
     private ActivityResultLauncher<Intent> cameraLauncher;
     private ActivityResultLauncher<Intent> galleryLauncher;
 
@@ -24,9 +30,10 @@ public class EditProfileActivity extends AppCompatActivity {
     private Button updateProfile;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_profile);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
+
 
         // Register image capture activity callback
         cameraLauncher = registerForActivityResult(
@@ -36,15 +43,22 @@ public class EditProfileActivity extends AppCompatActivity {
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleGalleryResult);
 
-        imageProfile = (ImageView) findViewById(R.id.imageProfile);
-        updateProfile = (Button) findViewById(R.id.updateProfile);
+        imageProfile = view.findViewById(R.id.imageProfile);
+        updateProfile = view.findViewById(R.id.updateProfile);
+
         imageProfile.setOnClickListener(v -> showDialogGetProfileImage());
         updateProfile.setOnClickListener(v -> showDialogSaveChanges());
+
+        return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 
     private void showDialogGetProfileImage() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.imagepreview);
         builder.setNeutralButton(R.string.cancel, (dialog, which) ->  { });
         builder.setNegativeButton(R.string.gallery, (dialog, which) -> {
@@ -60,7 +74,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void handleCameraResult(ActivityResult result) {
-        if (result.getResultCode() == RESULT_OK) {
+        if (result.getResultCode() == Activity.RESULT_OK) {
             try {
                 Intent data = result.getData();
                 assert data != null;
@@ -73,12 +87,12 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void handleGalleryResult(ActivityResult result) {
-        if (result.getResultCode() == RESULT_OK) {
+        if (result.getResultCode() == Activity.RESULT_OK) {
             try {
                 Intent data = result.getData();
                 assert data != null;
                 Uri imageUri = data.getData();
-                InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                InputStream imageStream = getActivity().getContentResolver().openInputStream(imageUri);
                 Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
                 imageProfile.setImageBitmap(selectedImage);
             } catch (Exception e) {
@@ -88,7 +102,7 @@ public class EditProfileActivity extends AppCompatActivity {
     }
 
     private void showDialogSaveChanges() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.saveChanges);
         builder.setNegativeButton(R.string.cancel, (dialog, which) ->  { });
         builder.setPositiveButton(R.string.ok, (dialog, which) -> storeUserInfo());
