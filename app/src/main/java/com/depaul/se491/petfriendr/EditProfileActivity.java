@@ -17,12 +17,16 @@ import android.provider.MediaStore;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.depaul.se491.petfriendr.models.UserProfile;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -39,8 +43,8 @@ public class EditProfileActivity extends AppCompatActivity {
     private Button uploadPhoto;
     StorageReference storageRef;
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private DatabaseReference mDatabase;
-    private DatabaseReference mUsersRef;
+    DatabaseReference mDatabase;
+    DatabaseReference mUserRef;
 
 
 
@@ -51,7 +55,9 @@ public class EditProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        this.storageRef = storage.getReference();
+        storageRef = storage.getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mUserRef = mDatabase.child("users").child(user.getUid());
 
         // Register image capture activity callback
         cameraLauncher = registerForActivityResult(
@@ -60,7 +66,7 @@ public class EditProfileActivity extends AppCompatActivity {
         galleryLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleGalleryResult);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
         imageProfile = (ImageView) findViewById(R.id.imageProfile);
         updateProfile = (Button) findViewById(R.id.updateProfile);
@@ -126,6 +132,24 @@ public class EditProfileActivity extends AppCompatActivity {
     private void storeUserInfo() {
 
 
+    }
+
+    private void setUserProfileListener(){
+
+        ValueEventListener updateProfile = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserProfile userProfile = snapshot.getValue(UserProfile.class);
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        mUserRef.addValueEventListener(updateProfile);
     }
 
     private void uploadNewPhoto(){
