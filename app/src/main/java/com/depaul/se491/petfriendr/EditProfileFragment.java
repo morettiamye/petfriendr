@@ -10,6 +10,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -20,6 +21,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+
+import com.depaul.se491.petfriendr.models.UserProfile;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 public class EditProfileFragment extends Fragment {
@@ -27,13 +44,19 @@ public class EditProfileFragment extends Fragment {
     private ActivityResultLauncher<Intent> galleryLauncher;
 
     private ImageView imageProfile;
-    private Button updateProfile;
+    private Button updateProfile, uploadPhoto;
+    StorageReference storageRef;
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference mUsersRef = mDatabase.child("users").child(user.getUid());
+//    StorageReference httpsReference = storageRef.child("/images");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_edit_profile, container, false);
-
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        this.storageRef = storage.getReference();
 
         // Register image capture activity callback
         cameraLauncher = registerForActivityResult(
@@ -45,16 +68,18 @@ public class EditProfileFragment extends Fragment {
 
         imageProfile = view.findViewById(R.id.imageProfile);
         updateProfile = view.findViewById(R.id.updateProfile);
+        uploadPhoto = view.findViewById(R.id.uploadProfilePic_button);
 
         imageProfile.setOnClickListener(v -> showDialogGetProfileImage());
         updateProfile.setOnClickListener(v -> showDialogSaveChanges());
-
+        uploadPhoto.setOnClickListener(v -> uploadNewPhoto());
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
     private void showDialogGetProfileImage() {
@@ -110,5 +135,38 @@ public class EditProfileFragment extends Fragment {
     }
 
     private void storeUserInfo() {
+
+        mUsersRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+
+            }
+        });
+    }
+    private void uploadNewPhoto(){
+        String uid = user.getUid();
+        StorageReference profilepicImageRef = storageRef.child("images/"+uid);
+        imageProfile.setDrawingCacheEnabled(true);
+        imageProfile.buildDrawingCache();
+        Bitmap bitmap = ((BitmapDrawable) imageProfile.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+        UploadTask uploadTask = profilepicImageRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+            }
+        });
+
+
+
     }
 }
