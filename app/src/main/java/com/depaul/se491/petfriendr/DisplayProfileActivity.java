@@ -86,7 +86,7 @@ public class DisplayProfileActivity extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 // Write was successful!
                 // ...
-               //ih allComments.append(newComment +"\n");
+                allComments.append(newComment +"\n");
             }
         })
                 .addOnFailureListener(new OnFailureListener() {
