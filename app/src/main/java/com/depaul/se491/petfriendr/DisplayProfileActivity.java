@@ -35,8 +35,8 @@ import com.squareup.picasso.Picasso;
 public class DisplayProfileActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
-    private DatabaseReference mCommentsRef;
-    private ValueEventListener mCommentsListener;
+     DatabaseReference mCommentsRef;
+     ValueEventListener mCommentsListener;
     Button submitComment;
     EditText newCommentText;
     FirebaseUser mUser;
