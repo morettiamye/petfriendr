@@ -45,7 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
         etUserEmail = findViewById(R.id.inputEmail);
         etUserPassword = findViewById(R.id.inputPassword);
         createAccount = findViewById(R.id.createAccountButton);
-        //etUserName = findViewById(R.id.createUsername_textField);
+        etUserName = findViewById(R.id.username);
         mAuth  = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
 
@@ -60,8 +60,11 @@ public class SignUpActivity extends AppCompatActivity {
     private void performFirebaseAuthentication() {
         String emailString = etUserEmail.getText().toString();
         String passwordString = etUserPassword.getText().toString();
-       // String nameString = etUserName.getText().toString();
-        if (!emailString.matches(emailPattern)){
+        String userName = etUserName.getText().toString();
+        if (userName.isEmpty()){
+            etUserName.setError("Username cannot be blank");
+        }
+        else if(!emailString.matches(emailPattern)){
             etUserEmail.setError("Enter Valid Email Address");
         }else if(passwordString.isEmpty() || passwordString.length()<6){
             etUserPassword.setError("Password cannot be empty or less than 6 characters in length");
@@ -81,7 +84,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void sendUserToNextActivity() {
-        //TODO: Update DisplayProfileActivity.class to the appropriate class after the user successfully  creates and account.
         Intent intent = new Intent(SignUpActivity.this, EditProfileFragment.class);
         startActivity(intent);
     }
