@@ -58,7 +58,6 @@ public class EditProfileFragment extends Fragment {
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
     private DatabaseReference mUsersRef = mDatabase.child("users").child(user.getUid());
-//    StorageReference httpsReference = storageRef.child("/images");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,7 +78,7 @@ public class EditProfileFragment extends Fragment {
         profileName = view.findViewById(R.id.editProfileName_textField);
         profileComment = view.findViewById(R.id.editProfile_textField);
         password = view.findViewById(R.id.editPassword_textField);
-        email.findViewById(R.id.updateEmail_textField);
+        email = view.findViewById(R.id.updateEmail_textField);
 
 
 
@@ -96,6 +95,7 @@ public class EditProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
     }
 
@@ -154,6 +154,7 @@ public class EditProfileFragment extends Fragment {
 
 
     private void storeUserInfo() {
+
         String newProfileName = profileName.getText().toString();
         String newProfileComment = profileComment.getText().toString();
         String newPassword = password.getText().toString();
