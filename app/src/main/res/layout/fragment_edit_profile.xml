@@ -11,14 +11,13 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp">
+        tools:layout_editor_absoluteX="16dp">
 
         <TextView
             android:id="@+id/editProfileScreen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
-            android:layout_marginBottom="19dp"
+            android:layout_marginTop="16dp"
             android:fontFamily="sans-serif"
             android:text="@string/editProfileText"
             android:textAllCaps="false"
@@ -26,81 +25,76 @@
             android:textSize="34sp"
             android:textStyle="bold"
             android:typeface="normal"
-            app:layout_constraintBottom_toTopOf="@+id/editProfileName_textField"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.493"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editProfileName_textField"
-            android:layout_width="match_parent"
-            android:layout_height="41dp"
+            android:layout_width="403dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="8dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/updateName"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            app:layout_constraintBottom_toTopOf="@+id/updateProfile"
+            app:layout_constraintBottom_toTopOf="@+id/editProfile_textField"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.199" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editProfile_textField"
             android:layout_width="match_parent"
-            android:layout_height="147dp"
-            android:layout_marginTop="22dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="93dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/profile"
             android:inputType="textPersonName"
             android:singleLine="false"
-            app:layout_constraintBottom_toTopOf="@+id/updateProfile"
+            app:layout_constraintBottom_toTopOf="@+id/uploadProfilePic_button"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editProfileName_textField"
-            app:layout_constraintVertical_bias="0.004" />
+            app:layout_constraintTop_toBottomOf="@+id/editProfileName_textField" />
 
         <Button
             android:id="@+id/uploadProfilePic_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="107dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="86dp"
+            android:layout_marginStart="41dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="78dp"
             android:backgroundTint="#F73659"
             android:contentDescription="@string/uploadbutton"
             android:text="@string/upload"
             app:layout_constraintBottom_toTopOf="@+id/updateEmail_textField"
             app:layout_constraintEnd_toStartOf="@+id/imageProfile"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editProfile_textField"
-            tools:ignore="TextContrastCheck" />
+            app:layout_constraintTop_toBottomOf="@+id/editProfile_textField" />
 
         <ImageView
             android:id="@+id/imageProfile"
-            android:layout_width="217dp"
+            android:layout_width="0dp"
             android:layout_height="184dp"
-            android:layout_marginTop="192dp"
-            android:layout_marginEnd="36dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="170dp"
             android:backgroundTint="#ECCBCB"
             android:contentDescription="@string/imagepreview"
+            app:layout_constraintBottom_toBottomOf="@+id/updateProfile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editProfileName_textField"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+            app:layout_constraintStart_toEndOf="@+id/uploadProfilePic_button"
+            app:layout_constraintTop_toTopOf="@+id/editProfile_textField"
+            tools:srcCompat="@drawable/uploadplaceholder" />
 
         <EditText
             android:id="@+id/updateEmail_textField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="6dp"
+            android:layout_marginBottom="7dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/update_email"
@@ -109,15 +103,14 @@
             android:singleLine="true"
             app:layout_constraintBottom_toTopOf="@+id/editPassword_textField"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/uploadProfilePic_button" />
 
         <EditText
             android:id="@+id/editPassword_textField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="7dp"
             android:autofillHints=""
             android:ems="10"
             android:hint="@string/update_password"
@@ -126,7 +119,6 @@
             android:singleLine="true"
             app:layout_constraintBottom_toTopOf="@+id/updateProfile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/updateEmail_textField" />
 
@@ -134,13 +126,13 @@
             android:id="@+id/updateProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="664dp"
+            android:layout_marginBottom="76dp"
             android:backgroundTint="#F73659"
             android:text="@string/update_profile"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editPassword_textField" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

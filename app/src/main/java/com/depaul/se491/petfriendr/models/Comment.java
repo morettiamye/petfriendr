@@ -10,6 +10,7 @@ import java.util.Date;
 
 public class Comment {
 
+    private String id;
     private String userId;
     private String userName;
     private String comment;
@@ -30,6 +31,11 @@ public class Comment {
         String millisInString  = dateFormat.format(new Date());
         this.timestamp = millisInString;
         this.receivedUserName = receivedUserName;
+        this.id = java.util.UUID.randomUUID().toString().replace("-","")+userId;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getUserId() {

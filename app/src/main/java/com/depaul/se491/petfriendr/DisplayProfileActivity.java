@@ -9,16 +9,40 @@
 
 package com.depaul.se491.petfriendr;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.depaul.se491.petfriendr.models.Comment;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class DisplayProfileActivity extends AppCompatActivity {
+
+    private DatabaseReference mDatabase;
+     DatabaseReference mCommentsRef;
+     ValueEventListener mCommentsListener;
+    Button submitComment;
+    EditText newCommentText;
+    FirebaseUser mUser;
+    FirebaseAuth mAuth;
+     String displayedUserID;
+    TextView allComments;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +52,7 @@ public class DisplayProfileActivity extends AppCompatActivity {
         String petName = getIntent().getStringExtra("Pet Name");
         String imageUrl = getIntent().getStringExtra("Image URL");
         String message = getIntent().getStringExtra("Message");
+        this.displayedUserID = getIntent().getStringExtra("userId");
         TextView textUser = findViewById(R.id.display_text_user_name);
         TextView textPet = findViewById(R.id.display_text_pet_name);
         TextView textMessage = findViewById((R.id.display_text_message));
@@ -36,5 +61,62 @@ public class DisplayProfileActivity extends AppCompatActivity {
         textPet.setText(petName);
         textMessage.setText(message);
         Picasso.get().load(imageUrl).into(imagePic);
+        newCommentText = findViewById(R.id.leavecommenttv);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        allComments = findViewById(R.id.textView);
+
+        submitComment = findViewById(R.id.submitcontentbtn);
+        submitComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addNewComment(displayedUserID);
+            }
+        });
+        getComments();
     }
+
+    private void addNewComment(String userName){
+        String newComment = newCommentText.getText().toString();
+
+        mAuth  = FirebaseAuth.getInstance();
+        mUser = mAuth.getCurrentUser();
+        Comment newCommentData = new Comment(mUser,newComment,userName);
+        mDatabase.child("comments").child(newCommentData.getId()).setValue(newCommentData).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                // Write was successful!
+                // ...
+                allComments.append(newComment +"\n");
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Write failed
+                        // ...
+                    }
+                });
+    }
+
+    private void getComments(){
+        mCommentsRef = mDatabase.child("comments");
+        mCommentsListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot child : snapshot.getChildren()){
+                    Comment comment = child.getValue(Comment.class);
+                    if (comment.getReceivedUserName().equalsIgnoreCase(displayedUserID)){
+                        allComments.append(comment.getComment()+"\n");
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        };
+        mCommentsRef.addValueEventListener(mCommentsListener);
+    }
+
 }

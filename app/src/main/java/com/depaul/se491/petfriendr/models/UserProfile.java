@@ -7,12 +7,11 @@ public class UserProfile {
     private String userId;
     private String photo;
     private String profileMessage;
-    private String comment;
 
     public UserProfile(){}
 
     public UserProfile(String petName, String userName, String userId, String photo,
-                       String profileMessage, String comment){
+                       String profileMessage){
         this.petName = petName;
         this.userName = userName;
         this.userId = userId;
