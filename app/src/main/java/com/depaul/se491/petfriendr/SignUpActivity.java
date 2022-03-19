@@ -82,8 +82,7 @@ public class SignUpActivity extends AppCompatActivity {
                                 nameString,
                                 uid,
                                 "photo url",
-                                "hi I'm ",
-                                "");
+                                "hi I'm ");
                         mDatabase.child("users").child(uid).setValue(newUser);
                         sendUserToNextActivity();
                         Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
