@@ -88,7 +88,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/uploadProfilePic_button"
             app:layout_constraintTop_toTopOf="@+id/editProfile_textField"
-            tools:srcCompat="@tools:sample/avatars" />
+            tools:srcCompat="@drawable/uploadplaceholder" />
 
         <EditText
             android:id="@+id/updateEmail_textField"
