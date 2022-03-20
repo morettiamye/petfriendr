@@ -33,8 +33,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -51,14 +53,22 @@ public class EditProfileFragment extends Fragment {
     private ActivityResultLauncher<Intent> galleryLauncher;
 
     private ImageView imageProfile;
-    private EditText profileName, profileComment, email, password;
+    private EditText updateProfileName, profileComment, email, password;
     String photo;
+
 
      Button updateProfile, uploadPhoto;
     StorageReference storageRef;
-    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
      DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
      DatabaseReference mUsersRef = mDatabase.child("users").child(user.getUid());
+    private String petName;
+    private String userName;
+    private String userId;
+    private String photoCurrent;
+    private String profileMessage;
+    private FirebaseAuth mAuth;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -76,12 +86,30 @@ public class EditProfileFragment extends Fragment {
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleGalleryResult);
 
+        mAuth = FirebaseAuth.getInstance();
 
-        profileName = view.findViewById(R.id.editProfileName_textField);
+        mUsersRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                UserProfile currentUser = snapshot.getValue(UserProfile.class);
+                petName = currentUser.getPetName();
+                userName = currentUser.getUserName();
+                userId = currentUser.getUserId();
+                photoCurrent = currentUser.getPhoto();
+                profileMessage = currentUser.getProfileMessage();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        updateProfileName = view.findViewById(R.id.editProfileName_textField);
         profileComment = view.findViewById(R.id.editProfile_textField);
         password = view.findViewById(R.id.editPassword_textField);
         email = view.findViewById(R.id.updateEmail_textField);
-
 
 
         imageProfile = view.findViewById(R.id.imageProfile);
@@ -146,6 +174,7 @@ public class EditProfileFragment extends Fragment {
     }
 
     private void showDialogSaveChanges() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.saveChanges);
         builder.setNegativeButton(R.string.cancel, (dialog, which) ->  { });
@@ -157,10 +186,12 @@ public class EditProfileFragment extends Fragment {
 
     private void storeUserInfo() {
 
-        String newProfileName = profileName.getText().toString();
+
+        String newProfileName = updateProfileName.getText().toString();
         String newProfileComment = profileComment.getText().toString();
         String newPassword = password.getText().toString();
         String newEmail = email.getText().toString();
+
 
 
         mUsersRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

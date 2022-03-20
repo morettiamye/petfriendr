@@ -38,7 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-
+    DatabaseReference mUsersRef = mDatabase.child("users");
 
 
     @Override
