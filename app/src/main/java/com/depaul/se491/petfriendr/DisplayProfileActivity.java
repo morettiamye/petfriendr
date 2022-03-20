@@ -62,8 +62,9 @@ public class DisplayProfileActivity extends AppCompatActivity {
         textMessage.setText(message);
         Picasso.get().load(imageUrl).into(imagePic);
         newCommentText = findViewById(R.id.leavecommenttv);
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
         allComments = findViewById(R.id.textView);
+        mCommentsRef = mDatabase.child("comments");
 
         submitComment = findViewById(R.id.submitcontentbtn);
         submitComment.setOnClickListener(new View.OnClickListener() {

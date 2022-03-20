@@ -87,11 +87,10 @@ public class EditProfileFragment extends Fragment {
                 this::handleGalleryResult);
 
         mAuth = FirebaseAuth.getInstance();
-
-        mUsersRef.addValueEventListener(new ValueEventListener() {
+        ValueEventListener listenerUsers = new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                UserProfile currentUser = snapshot.getValue(UserProfile.class);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                UserProfile currentUser = dataSnapshot.getValue(UserProfile.class);
                 petName = currentUser.getPetName();
                 userName = currentUser.getUserName();
                 userId = currentUser.getUserId();
@@ -100,10 +99,11 @@ public class EditProfileFragment extends Fragment {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
             }
-        });
+        };
+        mUsersRef.addValueEventListener(listenerUsers);
 
 
         updateProfileName = view.findViewById(R.id.editProfileName_textField);
@@ -183,7 +183,7 @@ public class EditProfileFragment extends Fragment {
 
     }
 
-
+ //TODO fix method
     private void storeUserInfo() {
 
 
@@ -194,53 +194,53 @@ public class EditProfileFragment extends Fragment {
 
 
 
-        mUsersRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-
-
-
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                        .setDisplayName(newProfileName)
-                        .build();
-
-                user.updateProfile(profileUpdates)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    UserProfile newUser = new UserProfile(newProfileName, user.getDisplayName(), user.getUid(),user.getPhotoUrl().toString(),newProfileComment);
-                                    mDatabase.child("users").child(user.getUid()).setValue(newUser);
-                                }
-                            }
-                        });
-                user.updateEmail(newEmail)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    UserProfile newUser = new UserProfile(newProfileName, user.getDisplayName(), user.getUid(),user.getPhotoUrl().toString(),newProfileComment);
-                                    mDatabase.child("users").child(user.getUid()).setValue(newUser);                                }
-                            }
-                        });
-
-
-                user.updatePassword(newPassword)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-
-                                }
-                            }
-                        });
-
-
-
-            }
-        });
+//        mUsersRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//
+//
+//
+//                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//
+//                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+//                        .setDisplayName(newProfileName)
+//                        .build();
+//
+//                user.updateProfile(profileUpdates)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    UserProfile newUser = new UserProfile(newProfileName, user.getDisplayName(), user.getUid(),user.getPhotoUrl().toString(),newProfileComment);
+//                                    mDatabase.child("users").child(user.getUid()).setValue(newUser);
+//                                }
+//                            }
+//                        });
+//                user.updateEmail(newEmail)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//                                    UserProfile newUser = new UserProfile(newProfileName, user.getDisplayName(), user.getUid(),user.getPhotoUrl().toString(),newProfileComment);
+//                                    mDatabase.child("users").child(user.getUid()).setValue(newUser);                                }
+//                            }
+//                        });
+//
+//
+//                user.updatePassword(newPassword)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            @Override
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                if (task.isSuccessful()) {
+//
+//                                }
+//                            }
+//                        });
+//
+//
+//
+//            }
+//        });
     }
     private void uploadNewPhoto(){
         String uid = user.getUid();
