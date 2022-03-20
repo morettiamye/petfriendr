@@ -52,12 +52,13 @@ public class EditProfileFragment extends Fragment {
 
     private ImageView imageProfile;
     private EditText profileName, profileComment, email, password;
+    String photo;
 
-    private Button updateProfile, uploadPhoto;
+     Button updateProfile, uploadPhoto;
     StorageReference storageRef;
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    private DatabaseReference mUsersRef = mDatabase.child("users").child(user.getUid());
+     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+     DatabaseReference mUsersRef = mDatabase.child("users").child(user.getUid());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,6 +75,7 @@ public class EditProfileFragment extends Fragment {
         galleryLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 this::handleGalleryResult);
+
 
         profileName = view.findViewById(R.id.editProfileName_textField);
         profileComment = view.findViewById(R.id.editProfile_textField);
@@ -164,10 +166,46 @@ public class EditProfileFragment extends Fragment {
         mUsersRef.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                UserProfile newUser = new UserProfile("",newProfileName,user.getUid(),user.getPhotoUrl().toString(),newProfileComment);
-                mDatabase.child("users").child(user.getUid()).setValue(newUser);
-                user.updateEmail(newEmail);
-                user.updatePassword(newPassword);
+
+
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                        .setDisplayName(newProfileName)
+                        .build();
+
+                user.updateProfile(profileUpdates)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    UserProfile newUser = new UserProfile(newProfileName, user.getDisplayName(), user.getUid(),user.getPhotoUrl().toString(),newProfileComment);
+                                    mDatabase.child("users").child(user.getUid()).setValue(newUser);
+                                }
+                            }
+                        });
+                user.updateEmail(newEmail)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    UserProfile newUser = new UserProfile(newProfileName, user.getDisplayName(), user.getUid(),user.getPhotoUrl().toString(),newProfileComment);
+                                    mDatabase.child("users").child(user.getUid()).setValue(newUser);                                }
+                            }
+                        });
+
+
+                user.updatePassword(newPassword)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+
+                                }
+                            }
+                        });
+
 
 
             }
@@ -193,16 +231,16 @@ public class EditProfileFragment extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 StorageReference storageRefUpload = FirebaseStorage.getInstance().getReference();
                 String link = profilepicImageRef.getDownloadUrl().toString();
-                UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                UserProfileChangeRequest photoChange = new UserProfileChangeRequest.Builder()
                         .setPhotoUri(Uri.parse(link))
                         .build();
 
-                user.updateProfile(profileUpdates)
+                user.updateProfile(photoChange)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-
+                                    photo = link;
                                 }
                             }
                         });
