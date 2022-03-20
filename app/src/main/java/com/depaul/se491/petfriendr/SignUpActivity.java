@@ -19,11 +19,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.depaul.se491.petfriendr.models.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -34,6 +37,8 @@ public class SignUpActivity extends AppCompatActivity {
     FirebaseAuth.AuthStateListener firebaseAuthStateListener;
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+
 
 
     @Override
@@ -72,7 +77,17 @@ public class SignUpActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()){
-                        sendUserToNextActivity();
+                        FirebaseUser user = mAuth.getCurrentUser();
+                        String uid = user.getUid();
+
+                        UserProfile newUser = new UserProfile("Pet Name",
+                                userName,
+                                uid,
+                                "photo url",
+                                "hi I'm ");
+                        mDatabase.child("users").child(uid).setValue(newUser);
+
+
                         Toast.makeText(SignUpActivity.this, "Registration Success", Toast.LENGTH_SHORT).show();
                     }else {
                         Toast.makeText(SignUpActivity.this, "Registration fail", Toast.LENGTH_SHORT).show();
@@ -83,7 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void sendUserToNextActivity() {
-        Intent intent = new Intent(SignUpActivity.this, EditProfileFragment.class);
+        Intent intent = new Intent(SignUpActivity.this, MainNavigationActivity.class);
         startActivity(intent);
     }
 
